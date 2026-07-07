@@ -73,7 +73,7 @@ kotlin {
                 implementation("com.squareup.okio:okio:3.10.2")
                 
                 // Koin (dependency injection)
-                implementation("io.insert-koin:koin-core:4.0.2")
+                implementation("io.insert-koin:koin-core:4.2.2")
                 
                 // QuickJS for JS execution (native targets)
                 // TODO: quickjs-kt not on Maven Central, need to add custom repo
