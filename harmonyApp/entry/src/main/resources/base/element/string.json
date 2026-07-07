@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Legado HAP Entry Module"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Legado Book Reader"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Legado"
+    },
+    {
+      "name": "app_name",
+      "value": "Legado"
+    }
+  ]
+}

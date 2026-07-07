@@ -1,0 +1,350 @@
+-- Auto-generated from Room schema v89
+
+CREATE TABLE IF NOT EXISTS books (
+    bookUrl TEXT NOT NULL,
+    tocUrl TEXT NOT NULL,
+    origin TEXT NOT NULL,
+    originName TEXT NOT NULL,
+    name TEXT NOT NULL,
+    author TEXT NOT NULL,
+    kind TEXT,
+    customTag TEXT,
+    coverUrl TEXT,
+    customCoverUrl TEXT,
+    intro TEXT,
+    customIntro TEXT,
+    charset TEXT,
+    type INTEGER NOT NULL,
+    `group` INTEGER NOT NULL,
+    latestChapterTitle TEXT,
+    latestChapterTime INTEGER NOT NULL,
+    lastCheckTime INTEGER NOT NULL,
+    lastCheckCount INTEGER NOT NULL,
+    totalChapterNum INTEGER NOT NULL,
+    durChapterTitle TEXT,
+    durChapterIndex INTEGER NOT NULL,
+    durVolumeIndex INTEGER NOT NULL,
+    chapterInVolumeIndex INTEGER NOT NULL,
+    durChapterPos INTEGER NOT NULL,
+    durChapterTime INTEGER NOT NULL,
+    wordCount TEXT,
+    canUpdate INTEGER NOT NULL,
+    `order` INTEGER NOT NULL,
+    originOrder INTEGER NOT NULL,
+    variable TEXT,
+    readConfig TEXT,
+    syncTime INTEGER NOT NULL,
+    PRIMARY KEY(bookUrl)
+);
+
+CREATE TABLE IF NOT EXISTS book_groups (
+    groupId INTEGER NOT NULL,
+    groupName TEXT NOT NULL,
+    cover TEXT,
+    `order` INTEGER NOT NULL,
+    enableRefresh INTEGER NOT NULL,
+    show INTEGER NOT NULL,
+    bookSort INTEGER NOT NULL,
+    onlyUpdateRead INTEGER NOT NULL,
+    PRIMARY KEY(groupId)
+);
+
+CREATE TABLE IF NOT EXISTS book_sources (
+    bookSourceUrl TEXT NOT NULL,
+    bookSourceName TEXT NOT NULL,
+    bookSourceGroup TEXT,
+    bookSourceType INTEGER NOT NULL,
+    bookUrlPattern TEXT,
+    customOrder INTEGER NOT NULL,
+    enabled INTEGER NOT NULL,
+    enabledExplore INTEGER NOT NULL,
+    jsLib TEXT,
+    enabledCookieJar INTEGER,
+    concurrentRate TEXT,
+    header TEXT,
+    loginUrl TEXT,
+    loginUi TEXT,
+    loginCheckJs TEXT,
+    coverDecodeJs TEXT,
+    bookSourceComment TEXT,
+    variableComment TEXT,
+    lastUpdateTime INTEGER NOT NULL,
+    respondTime INTEGER NOT NULL,
+    weight INTEGER NOT NULL,
+    exploreUrl TEXT,
+    exploreScreen TEXT,
+    ruleExplore TEXT,
+    searchUrl TEXT,
+    ruleSearch TEXT,
+    ruleBookInfo TEXT,
+    ruleToc TEXT,
+    ruleContent TEXT,
+    ruleReview TEXT,
+    eventListener INTEGER NOT NULL,
+    customButton INTEGER NOT NULL,
+    PRIMARY KEY(bookSourceUrl)
+);
+
+CREATE TABLE IF NOT EXISTS chapters (
+    url TEXT NOT NULL,
+    title TEXT NOT NULL,
+    isVolume INTEGER NOT NULL,
+    baseUrl TEXT NOT NULL,
+    bookUrl TEXT NOT NULL,
+    `index` INTEGER NOT NULL,
+    isVip INTEGER NOT NULL,
+    isPay INTEGER NOT NULL,
+    resourceUrl TEXT,
+    tag TEXT,
+    wordCount TEXT,
+    start INTEGER,
+    end INTEGER,
+    startFragmentId TEXT,
+    endFragmentId TEXT,
+    variable TEXT,
+    imgUrl TEXT,
+    PRIMARY KEY(url, bookUrl)
+);
+
+CREATE TABLE IF NOT EXISTS replace_rules (
+    `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    `group` TEXT,
+    pattern TEXT NOT NULL,
+    replacement TEXT NOT NULL,
+    scope TEXT,
+    scopeTitle INTEGER NOT NULL,
+    scopeContent INTEGER NOT NULL,
+    excludeScope TEXT,
+    isEnabled INTEGER NOT NULL,
+    isRegex INTEGER NOT NULL,
+    timeoutMillisecond INTEGER NOT NULL,
+    sortOrder INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS searchBooks (
+    bookUrl TEXT NOT NULL,
+    origin TEXT NOT NULL,
+    originName TEXT NOT NULL,
+    type INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    author TEXT NOT NULL,
+    kind TEXT,
+    coverUrl TEXT,
+    intro TEXT,
+    wordCount TEXT,
+    latestChapterTitle TEXT,
+    tocUrl TEXT NOT NULL,
+    time INTEGER NOT NULL,
+    variable TEXT,
+    originOrder INTEGER NOT NULL,
+    chapterWordCountText TEXT,
+    chapterWordCount INTEGER NOT NULL,
+    respondTime INTEGER NOT NULL,
+    PRIMARY KEY(bookUrl)
+);
+
+CREATE TABLE IF NOT EXISTS search_keywords (
+    word TEXT NOT NULL,
+    usage INTEGER NOT NULL,
+    lastUseTime INTEGER NOT NULL,
+    PRIMARY KEY(word)
+);
+
+CREATE TABLE IF NOT EXISTS cookies (
+    url TEXT NOT NULL,
+    cookie TEXT NOT NULL,
+    PRIMARY KEY(url)
+);
+
+CREATE TABLE IF NOT EXISTS rssSources (
+    sourceUrl TEXT NOT NULL,
+    sourceName TEXT NOT NULL,
+    sourceIcon TEXT NOT NULL,
+    sourceGroup TEXT,
+    sourceComment TEXT,
+    enabled INTEGER NOT NULL,
+    variableComment TEXT,
+    jsLib TEXT,
+    enabledCookieJar INTEGER,
+    concurrentRate TEXT,
+    header TEXT,
+    loginUrl TEXT,
+    loginUi TEXT,
+    loginCheckJs TEXT,
+    coverDecodeJs TEXT,
+    sortUrl TEXT,
+    singleUrl INTEGER NOT NULL,
+    articleStyle INTEGER NOT NULL,
+    ruleArticles TEXT,
+    ruleNextPage TEXT,
+    ruleTitle TEXT,
+    rulePubDate TEXT,
+    ruleDescription TEXT,
+    ruleImage TEXT,
+    ruleLink TEXT,
+    ruleContent TEXT,
+    contentWhitelist TEXT,
+    contentBlacklist TEXT,
+    shouldOverrideUrlLoading TEXT,
+    style TEXT,
+    enableJs INTEGER NOT NULL,
+    loadWithBaseUrl INTEGER NOT NULL,
+    injectJs TEXT,
+    preloadJs TEXT,
+    startHtml TEXT,
+    startStyle TEXT,
+    startJs TEXT,
+    showWebLog INTEGER NOT NULL,
+    lastUpdateTime INTEGER NOT NULL,
+    customOrder INTEGER NOT NULL,
+    type INTEGER NOT NULL,
+    preload INTEGER NOT NULL,
+    cacheFirst INTEGER NOT NULL,
+    searchUrl TEXT,
+    PRIMARY KEY(sourceUrl)
+);
+
+CREATE TABLE IF NOT EXISTS bookmarks (
+    time INTEGER NOT NULL,
+    bookName TEXT NOT NULL,
+    bookAuthor TEXT NOT NULL,
+    chapterIndex INTEGER NOT NULL,
+    chapterPos INTEGER NOT NULL,
+    chapterName TEXT NOT NULL,
+    bookText TEXT NOT NULL,
+    content TEXT NOT NULL,
+    PRIMARY KEY(time)
+);
+
+CREATE TABLE IF NOT EXISTS rssArticles (
+    origin TEXT NOT NULL,
+    sort TEXT NOT NULL,
+    title TEXT NOT NULL,
+    `order` INTEGER NOT NULL,
+    link TEXT NOT NULL,
+    pubDate TEXT,
+    description TEXT,
+    content TEXT,
+    image TEXT,
+    `group` TEXT NOT NULL,
+    read INTEGER NOT NULL,
+    variable TEXT,
+    type INTEGER NOT NULL,
+    durPos INTEGER NOT NULL,
+    PRIMARY KEY(origin, link, sort)
+);
+
+CREATE TABLE IF NOT EXISTS rssReadRecords (
+    record TEXT NOT NULL,
+    title TEXT,
+    readTime INTEGER,
+    read INTEGER NOT NULL,
+    origin TEXT NOT NULL,
+    sort TEXT NOT NULL,
+    image TEXT,
+    type INTEGER NOT NULL,
+    durPos INTEGER NOT NULL,
+    pubDate TEXT,
+    PRIMARY KEY(record)
+);
+
+CREATE TABLE IF NOT EXISTS rssStars (
+    origin TEXT NOT NULL,
+    sort TEXT NOT NULL,
+    title TEXT NOT NULL,
+    starTime INTEGER NOT NULL,
+    link TEXT NOT NULL,
+    pubDate TEXT,
+    description TEXT,
+    content TEXT,
+    image TEXT,
+    `group` TEXT NOT NULL,
+    variable TEXT,
+    type INTEGER NOT NULL,
+    durPos INTEGER NOT NULL,
+    PRIMARY KEY(origin, link)
+);
+
+CREATE TABLE IF NOT EXISTS txtTocRules (
+    `id` INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    rule TEXT NOT NULL,
+    replacement TEXT NOT NULL,
+    example TEXT,
+    serialNumber INTEGER NOT NULL,
+    enable INTEGER NOT NULL,
+    PRIMARY KEY(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS readRecord (
+    deviceId TEXT NOT NULL,
+    bookName TEXT NOT NULL,
+    readTime INTEGER NOT NULL,
+    lastRead INTEGER NOT NULL,
+    PRIMARY KEY(deviceId, bookName)
+);
+
+CREATE TABLE IF NOT EXISTS httpTTS (
+    `id` INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    url TEXT NOT NULL,
+    contentType TEXT,
+    concurrentRate TEXT,
+    loginUrl TEXT,
+    loginUi TEXT,
+    header TEXT,
+    jsLib TEXT,
+    enabledCookieJar INTEGER,
+    loginCheckJs TEXT,
+    lastUpdateTime INTEGER NOT NULL,
+    PRIMARY KEY(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS caches (
+    `key` TEXT NOT NULL,
+    value TEXT,
+    deadline INTEGER NOT NULL,
+    PRIMARY KEY(`key`)
+);
+
+CREATE TABLE IF NOT EXISTS ruleSubs (
+    `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    url TEXT NOT NULL,
+    type INTEGER NOT NULL,
+    customOrder INTEGER NOT NULL,
+    autoUpdate INTEGER NOT NULL,
+    `update` INTEGER NOT NULL,
+    updateInterval INTEGER NOT NULL,
+    silentUpdate INTEGER NOT NULL,
+    js TEXT,
+    showRule TEXT,
+    sourceUrl TEXT
+);
+
+CREATE TABLE IF NOT EXISTS dictRules (
+    name TEXT NOT NULL,
+    urlRule TEXT NOT NULL,
+    showRule TEXT NOT NULL,
+    enabled INTEGER NOT NULL,
+    sortNumber INTEGER NOT NULL,
+    PRIMARY KEY(name)
+);
+
+CREATE TABLE IF NOT EXISTS keyboardAssists (
+    type INTEGER NOT NULL,
+    `key` TEXT NOT NULL,
+    value TEXT NOT NULL,
+    serialNo INTEGER NOT NULL,
+    PRIMARY KEY(type, `key`)
+);
+
+CREATE TABLE IF NOT EXISTS servers (
+    `id` INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    config TEXT,
+    sortNumber INTEGER NOT NULL,
+    PRIMARY KEY(`id`)
+);

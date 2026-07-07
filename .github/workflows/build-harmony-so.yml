@@ -1,0 +1,121 @@
+name: Build libshared.so for HarmonyOS
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'shared/**'
+  pull_request:
+    paths:
+      - 'shared/**'
+  workflow_dispatch:  # 手动触发
+
+jobs:
+  build-so:
+    runs-on: macos-26  # Apple Silicon ARM64
+    
+    steps:
+      # 1. 检出代码
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # 2. 设置 JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      # 3. 验证 Kotlin 版本
+      - name: Check Kotlin toolchain
+        run: |
+          kotlin -version
+          echo "JAVA_HOME=$JAVA_HOME"
+
+      # 4. 配置 Gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-home-cache-cleanup: true
+
+      # 5. 编译 libshared.so (Kotlin/Native → HarmonyOS)
+      - name: Build libshared.so
+        run: |
+          ./gradlew :shared:linkHarmonyOSArm64 \
+            --no-daemon \
+            --stacktrace
+        env:
+          DEVECO_SDK_PATH: ${{ secrets.DEVECO_SDK_PATH }}
+
+      # 6. 验证产物
+      - name: Verify outputs
+        run: |
+          echo "=== libshared.so ==="
+          find shared/build/bin -name "*.so" -exec ls -lh {} \;
+          echo ""
+          echo "=== C headers ==="
+          find shared/build/bin -name "*.h" -exec echo "Found: {}" \;
+          echo ""
+          echo "=== KNOI bindings ==="
+          find shared/build -name "*.d.ts" -exec echo "Found: {}" \;
+
+      # 7. 上传产物 (供鸿蒙工程使用)
+      - name: Upload libshared.so artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: libshared-harmonyos
+          path: |
+            shared/build/bin/harmonyOSArm64/*.so
+            shared/build/bin/harmonyOSArm64/*.h
+          retention-days: 30
+          if-no-files-found: error
+
+      # 8. 上传 KNOI 生成的 ArkTS 绑定
+      - name: Upload KNOI bindings
+        if: hashFiles('shared/build/ts-api/**/*.d.ts') != ''
+        uses: actions/upload-artifact@v5
+        with:
+          name: knoi-bindings
+          path: shared/build/ts-api/**/*.d.ts
+          retention-days: 30
+
+  # 运行 JVM 单元测试 (快速验证, 不需 macOS)
+  run-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Run JVM tests
+        run: ./gradlew :shared:jvmTest --no-daemon
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: test-report
+          path: shared/build/reports/tests/
+
+  # 编译 Android 目标验证
+  build-android:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Compile Android target
+        run: ./gradlew :shared:compileDebugKotlinAndroid --no-daemon

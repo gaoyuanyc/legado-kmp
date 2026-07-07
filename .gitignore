@@ -1,0 +1,30 @@
+# Gradle
+.gradle/
+build/
+local.properties
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build outputs
+/shared/build/
+/shared/.gradle/
+/legado-android/build/
+/legado-android/.gradle/
+/harmonyApp/build/
+/harmonyApp/entry/build/
+/harmonyApp/oh_modules/
+
+# NDK / SDK
+/android-sdk/
+/harmony-sdk/
+*.so
+*.apk
+*.hap
+*.app

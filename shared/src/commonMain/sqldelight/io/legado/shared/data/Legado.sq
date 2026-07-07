@@ -1,0 +1,221 @@
+-- SQLDelight queries for Legado (matching Room schema v89)
+-- Core tables: books, book_sources, book_groups, cookies, search_keywords, caches, replace_rules
+
+-- =============================================
+-- books (33 columns)
+-- =============================================
+
+getBook:
+SELECT * FROM books WHERE bookUrl = ?;
+
+getBookByNameAndAuthor:
+SELECT * FROM books WHERE name = ? AND author = ?;
+
+getBookByOrigin:
+SELECT * FROM books WHERE name = ? AND origin = ?;
+
+getBookByFileName:
+SELECT * FROM books WHERE originName = ?;
+
+allBooks:
+SELECT * FROM books;
+
+flowAllBooks:
+SELECT * FROM books ORDER BY durChapterTime DESC;
+
+allBookUrls:
+SELECT bookUrl FROM books;
+
+allBookCount:
+SELECT COUNT(*) FROM books;
+
+hasBook:
+SELECT EXISTS(SELECT 1 FROM books WHERE bookUrl = ?);
+
+hasBookByName:
+SELECT EXISTS(SELECT 1 FROM books WHERE name = ? AND author = ?);
+
+insertBook:
+INSERT INTO books (bookUrl, tocUrl, origin, originName, name, author, kind, customTag, coverUrl, customCoverUrl, intro, customIntro, charset, type, `group`, latestChapterTitle, latestChapterTime, lastCheckTime, lastCheckCount, totalChapterNum, durChapterTitle, durChapterIndex, durVolumeIndex, chapterInVolumeIndex, durChapterPos, durChapterTime, wordCount, canUpdate, `order`, originOrder, variable, readConfig, syncTime)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateBook:
+UPDATE books SET tocUrl=?, origin=?, originName=?, name=?, author=?, kind=?, customTag=?, coverUrl=?, customCoverUrl=?, intro=?, customIntro=?, charset=?, type=?, `group`=?, latestChapterTitle=?, latestChapterTime=?, lastCheckTime=?, lastCheckCount=?, totalChapterNum=?, durChapterTitle=?, durChapterIndex=?, durVolumeIndex=?, chapterInVolumeIndex=?, durChapterPos=?, durChapterTime=?, wordCount=?, canUpdate=?, `order`=?, originOrder=?, variable=?, readConfig=?, syncTime=?
+WHERE bookUrl=?;
+
+deleteBook:
+DELETE FROM books WHERE bookUrl = ?;
+
+upProgress:
+UPDATE books SET durChapterPos = ? WHERE bookUrl = ?;
+
+deleteNotShelfBooks:
+DELETE FROM books WHERE type & 1024 > 0;
+
+-- =============================================
+-- book_sources (32 columns)
+-- =============================================
+
+getBookSource:
+SELECT * FROM book_sources WHERE bookSourceUrl = ?;
+
+flowAllSources:
+SELECT * FROM book_sources ORDER BY customOrder ASC;
+
+flowEnabledSources:
+SELECT * FROM book_sources WHERE enabled = 1 ORDER BY customOrder ASC;
+
+allSources:
+SELECT * FROM book_sources;
+
+allEnabledSources:
+SELECT * FROM book_sources WHERE enabled = 1;
+
+allDisabledSources:
+SELECT * FROM book_sources WHERE enabled = 0;
+
+sourceCount:
+SELECT COUNT(*) FROM book_sources;
+
+insertSource:
+INSERT INTO book_sources (bookSourceUrl, bookSourceName, bookSourceGroup, bookSourceType, bookUrlPattern, customOrder, enabled, enabledExplore, jsLib, enabledCookieJar, concurrentRate, header, loginUrl, loginUi, loginCheckJs, coverDecodeJs, bookSourceComment, variableComment, lastUpdateTime, respondTime, weight, exploreUrl, exploreScreen, ruleExplore, searchUrl, ruleSearch, ruleBookInfo, ruleToc, ruleContent, ruleReview, eventListener, customButton)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateSource:
+UPDATE book_sources SET bookSourceName=?, bookSourceGroup=?, bookSourceType=?, bookUrlPattern=?, customOrder=?, enabled=?, enabledExplore=?, jsLib=?, enabledCookieJar=?, concurrentRate=?, header=?, loginUrl=?, loginUi=?, loginCheckJs=?, coverDecodeJs=?, bookSourceComment=?, variableComment=?, lastUpdateTime=?, respondTime=?, weight=?, exploreUrl=?, exploreScreen=?, ruleExplore=?, searchUrl=?, ruleSearch=?, ruleBookInfo=?, ruleToc=?, ruleContent=?, ruleReview=?, eventListener=?, customButton=?
+WHERE bookSourceUrl=?;
+
+deleteSource:
+DELETE FROM book_sources WHERE bookSourceUrl = ?;
+
+enableSource:
+UPDATE book_sources SET enabled = ? WHERE bookSourceUrl = ?;
+
+upSourceOrder:
+UPDATE book_sources SET customOrder = ? WHERE bookSourceUrl = ?;
+
+upSourceGroup:
+UPDATE book_sources SET bookSourceGroup = ? WHERE bookSourceUrl = ?;
+
+-- =============================================
+-- book_groups (8 columns)
+-- =============================================
+
+getGroupById:
+SELECT * FROM book_groups WHERE groupId = ?;
+
+getGroupByName:
+SELECT * FROM book_groups WHERE groupName = ?;
+
+flowAllGroups:
+SELECT * FROM book_groups ORDER BY `order`;
+
+allGroups:
+SELECT * FROM book_groups;
+
+insertGroup:
+INSERT INTO book_groups (groupId, groupName, cover, `order`, enableRefresh, show, bookSort, onlyUpdateRead)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+updateGroup:
+UPDATE book_groups SET groupName=?, cover=?, `order`=?, enableRefresh=?, show=?, bookSort=?, onlyUpdateRead=?
+WHERE groupId=?;
+
+deleteGroup:
+DELETE FROM book_groups WHERE groupId = ?;
+
+-- =============================================
+-- cookies (2 columns)
+-- =============================================
+
+getCookie:
+SELECT * FROM cookies WHERE url = ?;
+
+allCookies:
+SELECT * FROM cookies;
+
+insertCookie:
+INSERT INTO cookies (url, cookie) VALUES (?, ?);
+
+updateCookie:
+UPDATE cookies SET cookie = ? WHERE url = ?;
+
+deleteCookie:
+DELETE FROM cookies WHERE url = ?;
+
+deleteAllCookies:
+DELETE FROM cookies;
+
+-- =============================================
+-- search_keywords (3 columns: word, usage, lastUseTime)
+-- =============================================
+
+getKeyword:
+SELECT * FROM search_keywords WHERE word = ?;
+
+flowRecentKeywords:
+SELECT * FROM search_keywords ORDER BY lastUseTime DESC LIMIT ?;
+
+insertKeyword:
+INSERT INTO search_keywords (word, usage, lastUseTime) VALUES (?, ?, ?);
+
+updateKeyword:
+UPDATE search_keywords SET usage = ?, lastUseTime = ? WHERE word = ?;
+
+deleteKeyword:
+DELETE FROM search_keywords WHERE word = ?;
+
+deleteAllKeywords:
+DELETE FROM search_keywords;
+
+-- =============================================
+-- caches (3 columns: key, value, deadline)
+-- =============================================
+
+getCache:
+SELECT * FROM caches WHERE `key` = ?;
+
+insertCache:
+INSERT INTO caches (`key`, value, deadline) VALUES (?, ?, ?);
+
+updateCache:
+UPDATE caches SET value = ?, deadline = ? WHERE `key` = ?;
+
+deleteCache:
+DELETE FROM caches WHERE `key` = ?;
+
+deleteAllCaches:
+DELETE FROM caches;
+
+-- =============================================
+-- replace_rules (12 columns, id auto-increment)
+-- =============================================
+
+getReplaceRule:
+SELECT * FROM replace_rules WHERE `id` = ?;
+
+flowAllReplaceRules:
+SELECT * FROM replace_rules ORDER BY sortOrder;
+
+flowEnabledReplaceRules:
+SELECT * FROM replace_rules WHERE isEnabled = 1 ORDER BY sortOrder;
+
+allReplaceRules:
+SELECT * FROM replace_rules;
+
+allEnabledReplaceRules:
+SELECT * FROM replace_rules WHERE isEnabled = 1;
+
+insertReplaceRule:
+INSERT INTO replace_rules (name, `group`, pattern, replacement, scope, scopeTitle, scopeContent, excludeScope, isEnabled, isRegex, timeoutMillisecond, sortOrder)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateReplaceRule:
+UPDATE replace_rules SET name=?, `group`=?, pattern=?, replacement=?, scope=?, scopeTitle=?, scopeContent=?, excludeScope=?, isEnabled=?, isRegex=?, timeoutMillisecond=?, sortOrder=?
+WHERE `id`=?;
+
+deleteReplaceRule:
+DELETE FROM replace_rules WHERE `id` = ?;
+
+enableAllReplaceRules:
+UPDATE replace_rules SET isEnabled = ?;
