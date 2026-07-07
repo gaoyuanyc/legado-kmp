@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Android target
         run: |
-          ./gradlew :shared:compileKotlinAndroid --no-daemon --stacktrace
+          ./gradlew :shared:compileDebugKotlinAndroid --no-daemon --stacktrace
         env:
           JAVA_HOME: ${{ env.JAVA_HOME }}
 
