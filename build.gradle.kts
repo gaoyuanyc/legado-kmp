@@ -12,6 +12,6 @@ plugins {
     id("app.cash.sqldelight") version "2.0.2" apply false
 }
 
-tasks.register("clean", Delete) {
-    delete rootProject.layout.buildDirectory
+tasks.register<Delete>("clean") {
+    delete(rootProject.layout.buildDirectory)
 }
