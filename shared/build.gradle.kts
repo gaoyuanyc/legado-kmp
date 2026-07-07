@@ -70,7 +70,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
                 
                 // Okio (multiplatform I/O)
-                implementation("com.squareup.okio:okio:3.10.2")
+                implementation("com.squareup.okio:okio:3.17.0")
                 
                 // Koin (dependency injection)
                 implementation("io.insert-koin:koin-core:4.0.2")
