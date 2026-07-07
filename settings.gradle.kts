@@ -16,4 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "legado-kmp"
 
-include ':shared'
+include(":shared")
