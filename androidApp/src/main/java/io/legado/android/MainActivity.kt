@@ -18,14 +18,14 @@ class MainActivity : ComposeActivity() {
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
             ) {
-                LegadoApp()
+                LegadoHomeScreen()
             }
         }
     }
 }
 
 @Composable
-fun LegadoApp() {
+fun LegadoHomeScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
