@@ -97,7 +97,7 @@ kotlin {
                 implementation("org.jsoup:jsoup:1.16.2")
                 
                 // Rhino for JS execution
-                implementation("org.mozilla:rhino:1.8.1")
+                implementation("org.mozilla:rhino:1.9.1")
                 
                 // OkHttp for HTTP
                 implementation("com.squareup.okhttp3:okhttp:5.3.2")
@@ -125,7 +125,7 @@ kotlin {
                 implementation("com.squareup.okhttp3:okhttp:5.3.2")
                 
                 // Rhino (Android JS engine)
-                implementation("org.mozilla:rhino:1.8.1")
+                implementation("org.mozilla:rhino:1.9.1")
                 
                 // Jsoup for HTML parsing
                 implementation("org.jsoup:jsoup:1.16.2")
