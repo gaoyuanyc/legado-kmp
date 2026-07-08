@@ -1,0 +1,258 @@
+﻿2026-07-08T16:31:50.8494333Z Current runner version: '2.335.1'
+2026-07-08T16:31:50.8520665Z ##[group]Runner Image Provisioner
+2026-07-08T16:31:50.8521589Z Hosted Compute Agent
+2026-07-08T16:31:50.8522264Z Version: 20260624.560
+2026-07-08T16:31:50.8522972Z Commit: 925d229a51159bc391ae97e54a2dd1fe20af789d
+2026-07-08T16:31:50.8523742Z Build Date: 2026-06-24T18:26:47Z
+2026-07-08T16:31:50.8524517Z Worker ID: {ebc2adb9-ba13-4e8c-a4e7-f880d475e654}
+2026-07-08T16:31:50.8525297Z Azure Region: centralus
+2026-07-08T16:31:50.8525902Z ##[endgroup]
+2026-07-08T16:31:50.8527368Z ##[group]Operating System
+2026-07-08T16:31:50.8528010Z Ubuntu
+2026-07-08T16:31:50.8528602Z 24.04.4
+2026-07-08T16:31:50.8529179Z LTS
+2026-07-08T16:31:50.8530122Z ##[endgroup]
+2026-07-08T16:31:50.8530756Z ##[group]Runner Image
+2026-07-08T16:31:50.8531370Z Image: ubuntu-24.04
+2026-07-08T16:31:50.8531941Z Version: 20260628.225.1
+2026-07-08T16:31:50.8533351Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260628.225/images/ubuntu/Ubuntu2404-Readme.md
+2026-07-08T16:31:50.8534881Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260628.225
+2026-07-08T16:31:50.8535867Z ##[endgroup]
+2026-07-08T16:31:50.8537119Z ##[group]GITHUB_TOKEN Permissions
+2026-07-08T16:31:50.8539423Z Contents: read
+2026-07-08T16:31:50.8540361Z Metadata: read
+2026-07-08T16:31:50.8541043Z Packages: read
+2026-07-08T16:31:50.8541618Z ##[endgroup]
+2026-07-08T16:31:50.8543824Z Secret source: Actions
+2026-07-08T16:31:50.8545097Z Prepare workflow directory
+2026-07-08T16:31:50.8883466Z Prepare all required actions
+2026-07-08T16:31:50.8923069Z Getting action download info
+2026-07-08T16:31:51.1637396Z Download action repository 'actions/checkout@v5' (SHA:93cb6efe18208431cddfb8368fd83d5badbf9bfd)
+2026-07-08T16:31:51.2368287Z Download action repository 'actions/setup-java@v5' (SHA:0f481fcb613427c0f801b606911222b5b6f3083a)
+2026-07-08T16:31:51.8573378Z Download action repository 'actions/upload-artifact@v5' (SHA:330a01c490aca151604b8cf639adc76d48f6c5d4)
+2026-07-08T16:31:52.1467188Z Complete job name: run-tests
+2026-07-08T16:31:52.2206342Z ##[group]Run actions/checkout@v5
+2026-07-08T16:31:52.2207210Z with:
+2026-07-08T16:31:52.2207658Z   repository: gaoyuanyc/legado-kmp
+2026-07-08T16:31:52.2212039Z   token: ***
+2026-07-08T16:31:52.2212472Z   ssh-strict: true
+2026-07-08T16:31:52.2212917Z   ssh-user: git
+2026-07-08T16:31:52.2213361Z   persist-credentials: true
+2026-07-08T16:31:52.2213843Z   clean: true
+2026-07-08T16:31:52.2214287Z   sparse-checkout-cone-mode: true
+2026-07-08T16:31:52.2214794Z   fetch-depth: 1
+2026-07-08T16:31:52.2215221Z   fetch-tags: false
+2026-07-08T16:31:52.2215662Z   show-progress: true
+2026-07-08T16:31:52.2216123Z   lfs: false
+2026-07-08T16:31:52.2216538Z   submodules: false
+2026-07-08T16:31:52.2216984Z   set-safe-directory: true
+2026-07-08T16:31:52.2217702Z ##[endgroup]
+2026-07-08T16:31:52.3237587Z Syncing repository: gaoyuanyc/legado-kmp
+2026-07-08T16:31:52.3241084Z ##[group]Getting Git version info
+2026-07-08T16:31:52.3242260Z Working directory is '/home/runner/work/legado-kmp/legado-kmp'
+2026-07-08T16:31:52.3243992Z [command]/usr/bin/git version
+2026-07-08T16:31:52.3296114Z git version 2.54.0
+2026-07-08T16:31:52.3351574Z ##[endgroup]
+2026-07-08T16:31:52.3369869Z Temporarily overriding HOME='/home/runner/work/_temp/722dbede-f101-4ce6-b5fc-d7f3edbfa62e' before making global git config changes
+2026-07-08T16:31:52.3372426Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-08T16:31:52.3374596Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/legado-kmp/legado-kmp
+2026-07-08T16:31:52.3424804Z Deleting the contents of '/home/runner/work/legado-kmp/legado-kmp'
+2026-07-08T16:31:52.3429847Z ##[group]Initializing the repository
+2026-07-08T16:31:52.3436144Z [command]/usr/bin/git init /home/runner/work/legado-kmp/legado-kmp
+2026-07-08T16:31:52.3540477Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-07-08T16:31:52.3542099Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-07-08T16:31:52.3544032Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-07-08T16:31:52.3545151Z hint: call:
+2026-07-08T16:31:52.3545736Z hint:
+2026-07-08T16:31:52.3546515Z hint: 	git config --global init.defaultBranch <name>
+2026-07-08T16:31:52.3547438Z hint:
+2026-07-08T16:31:52.3548285Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-07-08T16:31:52.3549858Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-07-08T16:31:52.3550978Z hint:
+2026-07-08T16:31:52.3551590Z hint: 	git branch -m <name>
+2026-07-08T16:31:52.3552278Z hint:
+2026-07-08T16:31:52.3553196Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-07-08T16:31:52.3554278Z Initialized empty Git repository in /home/runner/work/legado-kmp/legado-kmp/.git/
+2026-07-08T16:31:52.3556722Z [command]/usr/bin/git remote add origin https://github.com/gaoyuanyc/legado-kmp
+2026-07-08T16:31:52.3604964Z ##[endgroup]
+2026-07-08T16:31:52.3605770Z ##[group]Disabling automatic garbage collection
+2026-07-08T16:31:52.3610034Z [command]/usr/bin/git config --local gc.auto 0
+2026-07-08T16:31:52.3645578Z ##[endgroup]
+2026-07-08T16:31:52.3646532Z ##[group]Setting up auth
+2026-07-08T16:31:52.3653943Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-08T16:31:52.3693049Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-08T16:31:52.4087967Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-08T16:31:52.4131181Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-08T16:31:52.4381826Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-08T16:31:52.4423291Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-08T16:31:52.4672897Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-07-08T16:31:52.4716093Z ##[endgroup]
+2026-07-08T16:31:52.4717322Z ##[group]Fetching the repository
+2026-07-08T16:31:52.4726433Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +180e8e160a77c26b55deb0af0fd6490ad904973e:refs/remotes/origin/main
+2026-07-08T16:31:52.9891367Z From https://github.com/gaoyuanyc/legado-kmp
+2026-07-08T16:31:52.9892786Z  * [new ref]         180e8e160a77c26b55deb0af0fd6490ad904973e -> origin/main
+2026-07-08T16:31:52.9930357Z ##[endgroup]
+2026-07-08T16:31:52.9931752Z ##[group]Determining the checkout info
+2026-07-08T16:31:52.9933431Z ##[endgroup]
+2026-07-08T16:31:52.9938509Z [command]/usr/bin/git sparse-checkout disable
+2026-07-08T16:31:52.9992561Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-07-08T16:31:53.0032790Z ##[group]Checking out the ref
+2026-07-08T16:31:53.0038350Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-07-08T16:31:53.0287889Z Switched to a new branch 'main'
+2026-07-08T16:31:53.0290100Z branch 'main' set up to track 'origin/main'.
+2026-07-08T16:31:53.0300341Z ##[endgroup]
+2026-07-08T16:31:53.0354318Z [command]/usr/bin/git log -1 --format=%H
+2026-07-08T16:31:53.0385835Z 180e8e160a77c26b55deb0af0fd6490ad904973e
+2026-07-08T16:31:53.0841075Z ##[group]Run actions/setup-java@v5
+2026-07-08T16:31:53.0842229Z with:
+2026-07-08T16:31:53.0843062Z   distribution: zulu
+2026-07-08T16:31:53.0844007Z   java-version: 17
+2026-07-08T16:31:53.0844921Z   java-package: jdk
+2026-07-08T16:31:53.0845846Z   check-latest: false
+2026-07-08T16:31:53.0846788Z   set-default: true
+2026-07-08T16:31:53.0847721Z   verify-signature: false
+2026-07-08T16:31:53.0848931Z   server-id: github
+2026-07-08T16:31:53.0850024Z   server-username: GITHUB_ACTOR
+2026-07-08T16:31:53.0851142Z   server-password: GITHUB_TOKEN
+2026-07-08T16:31:53.0852249Z   overwrite-settings: true
+2026-07-08T16:31:53.0853271Z   job-status: success
+2026-07-08T16:31:53.0862729Z   token: ***
+2026-07-08T16:31:53.0863668Z   show-download-progress: false
+2026-07-08T16:31:53.0864748Z ##[endgroup]
+2026-07-08T16:31:53.2479015Z ##[group]Installed distributions
+2026-07-08T16:31:53.2508632Z Trying to resolve the latest version from remote
+2026-07-08T16:32:22.0323599Z Resolved latest version as 17.0.19+10
+2026-07-08T16:32:22.0324301Z Trying to download...
+2026-07-08T16:32:22.0341257Z Downloading Java 17.0.19+10 (Zulu) from https://cdn.azul.com/zulu/bin/zulu17.66.19-ca-crac-jdk17.0.19-linux_x64.tar.gz ...
+2026-07-08T16:32:27.1572371Z Extracting Java archive...
+2026-07-08T16:32:27.1712214Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/6c7914aa-9141-4db5-95fc-72711778b8a9 -f /home/runner/work/_temp/d8d98746-1428-4fd4-bff4-29d0194a59f3
+2026-07-08T16:32:30.0097475Z Java 17.0.19+10 was downloaded
+2026-07-08T16:32:30.0097985Z Setting Java 17.0.19+10 as the default
+2026-07-08T16:32:30.0107878Z Creating toolchains.xml for JDK version 17 from zulu
+2026-07-08T16:32:30.0180251Z Writing to /home/runner/.m2/toolchains.xml
+2026-07-08T16:32:30.0180829Z 
+2026-07-08T16:32:30.0180990Z Java configuration:
+2026-07-08T16:32:30.0181330Z   Distribution: zulu
+2026-07-08T16:32:30.0181683Z   Version: 17.0.19+10
+2026-07-08T16:32:30.0182162Z   Path: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/x64
+2026-07-08T16:32:30.0182577Z 
+2026-07-08T16:32:30.0183771Z ##[endgroup]
+2026-07-08T16:32:30.0212206Z Creating settings.xml with server-id: github
+2026-07-08T16:32:30.0212658Z Writing to /home/runner/.m2/settings.xml
+2026-07-08T16:32:30.0213414Z Configured MAVEN_ARGS to include -ntp to suppress Maven transfer progress logs. Set 'show-download-progress: true' to keep the download progress output.
+2026-07-08T16:32:30.0384926Z ##[group]Run ./gradlew :shared:jvmTest --no-daemon
+2026-07-08T16:32:30.0385433Z [36;1m./gradlew :shared:jvmTest --no-daemon[0m
+2026-07-08T16:32:30.2043450Z shell: /usr/bin/bash -e {0}
+2026-07-08T16:32:30.2043844Z env:
+2026-07-08T16:32:30.2044165Z   JAVA_HOME: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/x64
+2026-07-08T16:32:30.2044651Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/x64
+2026-07-08T16:32:30.2045039Z   MAVEN_ARGS: -ntp
+2026-07-08T16:32:30.2045270Z ##[endgroup]
+2026-07-08T16:32:30.3077511Z Downloading https://services.gradle.org/distributions/gradle-8.14.4-bin.zip
+2026-07-08T16:32:31.8571799Z ...................................................................................................................................
+2026-07-08T16:32:31.8577728Z Unzipping /home/runner/.gradle/wrapper/dists/gradle-8.14.4-bin/92wwslzcyst3phie3o264zltu/gradle-8.14.4-bin.zip to /home/runner/.gradle/wrapper/dists/gradle-8.14.4-bin/92wwslzcyst3phie3o264zltu
+2026-07-08T16:32:32.6349780Z Set executable permissions for: /home/runner/.gradle/wrapper/dists/gradle-8.14.4-bin/92wwslzcyst3phie3o264zltu/gradle-8.14.4/bin/gradle
+2026-07-08T16:32:33.0861341Z 
+2026-07-08T16:32:33.0881072Z Welcome to Gradle 8.14.4!
+2026-07-08T16:32:33.0881523Z 
+2026-07-08T16:32:33.0881783Z Here are the highlights of this release:
+2026-07-08T16:32:33.0882268Z  - Java 24 support
+2026-07-08T16:32:33.0882661Z  - GraalVM Native Image toolchain selection
+2026-07-08T16:32:33.0883131Z  - Enhancements to test reporting
+2026-07-08T16:32:33.0883420Z  - Build Authoring improvements
+2026-07-08T16:32:33.0883606Z 
+2026-07-08T16:32:33.0900938Z For more details see https://docs.gradle.org/8.14.4/release-notes.html
+2026-07-08T16:32:33.0901927Z 
+2026-07-08T16:32:33.1858617Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.4/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+2026-07-08T16:32:34.1856927Z Daemon will be stopped at the end of the build 
+2026-07-08T16:33:31.4862876Z 
+2026-07-08T16:33:31.4874406Z e: file:///home/runner/work/legado-kmp/legado-kmp/shared/build.gradle.kts:36:27: Unresolved reference. None of the following candidates is applicable because of receiver type mismatch: 
+2026-07-08T16:33:31.4875685Z > Configure project :shared
+2026-07-08T16:33:31.4876578Z public fun TaskContainer.creating(configuration: Task.() -> Unit): NamedDomainObjectContainerCreatingDelegateProvider<Task!> defined in org.gradle.kotlin.dsl
+2026-07-08T16:33:31.4877899Z e: file:///home/runner/work/legado-kmp/legado-kmp/shared/build.gradle.kts:37:9: Unresolved reference: binaries
+2026-07-08T16:33:31.4878627Z e: file:///home/runner/work/legado-kmp/legado-kmp/shared/build.gradle.kts:38:13: Unresolved reference: baseName
+2026-07-08T16:33:31.4879398Z w: file:///home/runner/work/legado-kmp/legado-kmp/shared/build.gradle.kts:36:9: Variable 'harmonyOSArm64' is never used
+2026-07-08T16:33:31.4901274Z w: ⚠️ Missing `androidTarget()` in Kotlin Multiplatform Project
+2026-07-08T16:33:31.4902210Z Missing `androidTarget()` Kotlin target in multiplatform project 'shared (:shared)'.
+2026-07-08T16:33:31.4911084Z The Android Gradle plugin was applied without creating a corresponding `androidTarget()` Kotlin Target
+2026-07-08T16:33:31.4911941Z ```
+2026-07-08T16:33:31.4920576Z plugins {
+2026-07-08T16:33:31.4921137Z     id("com.android.library")
+2026-07-08T16:33:31.4921745Z     kotlin("multiplatform")
+2026-07-08T16:33:31.4922280Z }
+2026-07-08T16:33:31.4922585Z 
+2026-07-08T16:33:31.4922865Z kotlin {
+2026-07-08T16:33:31.4923441Z     androidTarget() // <-- please register this Android target
+2026-07-08T16:33:31.4924105Z }
+2026-07-08T16:33:31.4924525Z ```
+2026-07-08T16:33:31.4925026Z Solution: Please register the Android target.
+2026-07-08T16:33:31.4925527Z 
+2026-07-08T16:33:31.5880070Z 
+2026-07-08T16:33:31.5880975Z SQLDelight Gradle plugin was applied but there are no databases set up.
+2026-07-08T16:33:31.5906083Z FAILURE: Build failed with an exception.
+2026-07-08T16:33:31.5906503Z 
+2026-07-08T16:33:31.5906529Z 
+2026-07-08T16:33:31.5906727Z * Where:
+2026-07-08T16:33:31.5907426Z Build file '/home/runner/work/legado-kmp/legado-kmp/shared/build.gradle.kts' line: 36
+2026-07-08T16:33:31.5908023Z 
+2026-07-08T16:33:31.5908231Z * What went wrong:
+2026-07-08T16:33:31.5908701Z Script compilation errors:
+2026-07-08T16:33:31.5908993Z 
+2026-07-08T16:33:31.5909241Z   Line 36:     val harmonyOSArm64 by creating {
+2026-07-08T16:33:31.5910089Z                    ^ Variable 'harmonyOSArm64' is never used
+2026-07-08T16:33:31.5910495Z 
+2026-07-08T16:33:31.5910739Z   Line 36:     val harmonyOSArm64 by creating {
+2026-07-08T16:33:31.5911744Z                                      ^ Unresolved reference. None of the following candidates is applicable because of receiver type mismatch: 
+2026-07-08T16:33:31.5913491Z                                          public fun TaskContainer.creating(configuration: Task.() -> Unit): NamedDomainObjectContainerCreatingDelegateProvider<Task!> defined in org.gradle.kotlin.dsl
+2026-07-08T16:33:31.5914692Z 
+2026-07-08T16:33:31.5914926Z   Line 37:         binaries.sharedLib {
+2026-07-08T16:33:31.5915515Z                    ^ Unresolved reference: binaries
+2026-07-08T16:33:31.5915894Z 
+2026-07-08T16:33:31.5916108Z   Line 38:             baseName = "shared"
+2026-07-08T16:33:31.5916698Z                        ^ Unresolved reference: baseName
+2026-07-08T16:33:31.5917052Z 
+2026-07-08T16:33:31.5917239Z 4 errors
+2026-07-08T16:33:31.5917450Z 
+2026-07-08T16:33:31.5917632Z * Try:
+2026-07-08T16:33:31.5918097Z > Run with --stacktrace option to get the stack trace.
+2026-07-08T16:33:31.5918743Z > Run with --info or --debug option to get more log output.
+2026-07-08T16:33:31.5919356Z > Run with --scan to get full insights.
+2026-07-08T16:33:31.5920127Z > Get more help at https://help.gradle.org.
+2026-07-08T16:33:31.5920511Z 
+2026-07-08T16:33:31.5920721Z BUILD FAILED in 1m 1s
+2026-07-08T16:33:31.5921738Z [Incubating] Problems report is available at: file:///home/runner/work/legado-kmp/legado-kmp/build/reports/problems/problems-report.html
+2026-07-08T16:33:31.8226639Z ##[error]Process completed with exit code 1.
+2026-07-08T16:33:31.8310920Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-08T16:33:31.8312185Z ##[group]Run actions/upload-artifact@v5
+2026-07-08T16:33:31.8312457Z with:
+2026-07-08T16:33:31.8312650Z   name: test-report
+2026-07-08T16:33:31.8312870Z   path: shared/build/reports/tests/
+2026-07-08T16:33:31.8313128Z   if-no-files-found: warn
+2026-07-08T16:33:31.8313356Z   compression-level: 6
+2026-07-08T16:33:31.8313567Z   overwrite: false
+2026-07-08T16:33:31.8313777Z   include-hidden-files: false
+2026-07-08T16:33:31.8314006Z env:
+2026-07-08T16:33:31.8314276Z   JAVA_HOME: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/x64
+2026-07-08T16:33:31.8314693Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/x64
+2026-07-08T16:33:31.8315084Z   MAVEN_ARGS: -ntp
+2026-07-08T16:33:31.8315291Z ##[endgroup]
+2026-07-08T16:33:31.9949889Z (node:2492) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-08T16:33:31.9950611Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-08T16:33:31.9982027Z ##[warning]No files were found with the provided path: shared/build/reports/tests/. No artifacts will be uploaded.
+2026-07-08T16:33:32.0267402Z Post job cleanup.
+2026-07-08T16:33:32.1819834Z Post job cleanup.
+2026-07-08T16:33:32.2717362Z [command]/usr/bin/git version
+2026-07-08T16:33:32.2791029Z git version 2.54.0
+2026-07-08T16:33:32.2828563Z Temporarily overriding HOME='/home/runner/work/_temp/f3810db5-bb9a-46d4-ab75-ee228ce116eb' before making global git config changes
+2026-07-08T16:33:32.2830036Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-08T16:33:32.2833919Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/legado-kmp/legado-kmp
+2026-07-08T16:33:32.2874706Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-08T16:33:32.2912165Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-08T16:33:32.3175920Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-08T16:33:32.3204633Z http.https://github.com/.extraheader
+2026-07-08T16:33:32.3215556Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-07-08T16:33:32.3253989Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-08T16:33:32.3524622Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-08T16:33:32.3564450Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-08T16:33:32.3964187Z Cleaning up orphan processes
+2026-07-08T16:33:32.4277783Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,44 @@
+﻿2026-07-08T16:33:29.0242450Z ##[group]Run set -euo pipefail
+2026-07-08T16:33:29.0242770Z [36;1mset -euo pipefail[0m
+2026-07-08T16:33:29.0242970Z [36;1mmkdir -p ~/.konan[0m
+2026-07-08T16:33:29.0243200Z [36;1mecho "Downloading OHOS LLVM toolchain..."[0m
+2026-07-08T16:33:29.0243490Z [36;1mcurl -sSL -o /tmp/llvm-ohos.tar.gz \[0m
+2026-07-08T16:33:29.0244000Z [36;1m  "https://github.com/linhandev/KuiklyBase-kotlin/releases/download/llvm-ohos-2/LLVM-19.1.7-ohos-2.tar.gz" \[0m
+2026-07-08T16:33:29.0244480Z [36;1m  || echo "WARN: Could not download LLVM"[0m
+2026-07-08T16:33:29.0244760Z [36;1mif [ -f /tmp/llvm-ohos.tar.gz ]; then[0m
+2026-07-08T16:33:29.0245090Z [36;1m  tar -xf /tmp/llvm-ohos.tar.gz -C ~/.konan/ 2>/dev/null || true[0m
+2026-07-08T16:33:29.0245420Z [36;1m  echo "LLVM toolchain extracted"[0m
+2026-07-08T16:33:29.0245640Z [36;1mfi[0m
+2026-07-08T16:33:29.0245830Z [36;1mcurl -sSL -o /tmp/sysroot-ohos.tar.gz \[0m
+2026-07-08T16:33:29.0246240Z [36;1m  "https://kotlinnativeohos.online/download/sysroot-ohos-aarch64-5.0.11.110.tar.gz" \[0m
+2026-07-08T16:33:29.0246700Z [36;1m  || echo "WARN: Could not download sysroot"[0m
+2026-07-08T16:33:29.0246980Z [36;1mif [ -f /tmp/sysroot-ohos.tar.gz ]; then[0m
+2026-07-08T16:33:29.0247450Z [36;1m  tar -xf /tmp/sysroot-ohos.tar.gz -C ~/.konan/ 2>/dev/null || true[0m
+2026-07-08T16:33:29.0248090Z [36;1m  echo "Sysroot extracted"[0m
+2026-07-08T16:33:29.0248370Z [36;1mfi[0m
+2026-07-08T16:33:29.0248890Z [36;1mls -la ~/.konan/ 2>/dev/null || true[0m
+2026-07-08T16:33:29.0627860Z shell: /bin/bash -e {0}
+2026-07-08T16:33:29.0628080Z env:
+2026-07-08T16:33:29.0628950Z   JAVA_HOME: /Users/runner/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/arm64/Contents/Home
+2026-07-08T16:33:29.0629490Z   JAVA_HOME_17_ARM64: /Users/runner/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/arm64/Contents/Home
+2026-07-08T16:33:29.0629870Z   MAVEN_ARGS: -ntp
+2026-07-08T16:33:29.0630070Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-07-08T16:33:29.0630340Z   GRADLE_USER_HOME: /Users/runner/.gradle
+2026-07-08T16:33:29.0630610Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-07-08T16:33:29.0630860Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-07-08T16:33:29.0631240Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-07-08T16:33:29.0631630Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-07-08T16:33:29.0632240Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-07-08T16:33:29.0632460Z ##[endgroup]
+2026-07-08T16:33:29.1409370Z Downloading OHOS LLVM toolchain...
+2026-07-08T16:33:29.4355650Z LLVM toolchain extracted
+2026-07-08T16:33:29.7419720Z curl: (60) SSL: no alternative certificate subject name matches target host name 'kotlinnativeohos.online'
+2026-07-08T16:33:29.7422730Z More details here: https://curl.se/docs/sslcerts.html
+2026-07-08T16:33:29.7423420Z 
+2026-07-08T16:33:29.7423630Z curl failed to verify the legitimacy of the server and therefore could not
+2026-07-08T16:33:29.7424090Z establish a secure connection to it. To learn more about this situation and
+2026-07-08T16:33:29.7424620Z how to fix it, please visit the web page mentioned above.
+2026-07-08T16:33:29.7428640Z WARN: Could not download sysroot
+2026-07-08T16:33:29.7499360Z total 0
+2026-07-08T16:33:29.7500770Z drwxr-xr-x   2 runner  staff    64 Jul  8 16:33 .
+2026-07-08T16:33:29.7501280Z drwxr-x---+ 42 runner  staff  1344 Jul  8 16:33 ..

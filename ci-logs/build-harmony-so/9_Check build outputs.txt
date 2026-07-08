@@ -1,0 +1,18 @@
+﻿2026-07-08T16:33:51.6327630Z ##[group]Run echo "=== Searching for .so files ==="
+2026-07-08T16:33:51.6328130Z [36;1mecho "=== Searching for .so files ==="[0m
+2026-07-08T16:33:51.6328580Z [36;1mfind shared/build -name "*.so" -exec ls -lh {} \; 2>/dev/null || echo "No .so files found"[0m
+2026-07-08T16:33:51.6452320Z shell: /bin/bash -e {0}
+2026-07-08T16:33:51.6452930Z env:
+2026-07-08T16:33:51.6455100Z   JAVA_HOME: /Users/runner/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/arm64/Contents/Home
+2026-07-08T16:33:51.6459680Z   JAVA_HOME_17_ARM64: /Users/runner/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/arm64/Contents/Home
+2026-07-08T16:33:51.6461060Z   MAVEN_ARGS: -ntp
+2026-07-08T16:33:51.6501470Z   GRADLE_ACTION_ID: gradle/actions/setup-gradle
+2026-07-08T16:33:51.6502440Z   GRADLE_USER_HOME: /Users/runner/.gradle
+2026-07-08T16:33:51.6503040Z   GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+2026-07-08T16:33:51.6503400Z   GRADLE_BUILD_ACTION_CACHE_RESTORED: true
+2026-07-08T16:33:51.6503860Z   DEVELOCITY_INJECTION_INIT_SCRIPT_NAME: gradle-actions.inject-develocity.init.gradle
+2026-07-08T16:33:51.6504440Z   DEVELOCITY_INJECTION_CUSTOM_VALUE: gradle-actions
+2026-07-08T16:33:51.6504790Z   GITHUB_DEPENDENCY_GRAPH_ENABLED: false
+2026-07-08T16:33:51.6505080Z ##[endgroup]
+2026-07-08T16:33:51.7871320Z === Searching for .so files ===
+2026-07-08T16:33:51.7999210Z No .so files found

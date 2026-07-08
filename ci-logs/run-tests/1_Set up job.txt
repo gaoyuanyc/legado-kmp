@@ -1,0 +1,33 @@
+﻿2026-07-08T16:31:50.8493478Z Current runner version: '2.335.1'
+2026-07-08T16:31:50.8520633Z ##[group]Runner Image Provisioner
+2026-07-08T16:31:50.8521584Z Hosted Compute Agent
+2026-07-08T16:31:50.8522259Z Version: 20260624.560
+2026-07-08T16:31:50.8522968Z Commit: 925d229a51159bc391ae97e54a2dd1fe20af789d
+2026-07-08T16:31:50.8523737Z Build Date: 2026-06-24T18:26:47Z
+2026-07-08T16:31:50.8524511Z Worker ID: {ebc2adb9-ba13-4e8c-a4e7-f880d475e654}
+2026-07-08T16:31:50.8525293Z Azure Region: centralus
+2026-07-08T16:31:50.8525899Z ##[endgroup]
+2026-07-08T16:31:50.8527353Z ##[group]Operating System
+2026-07-08T16:31:50.8528005Z Ubuntu
+2026-07-08T16:31:50.8528599Z 24.04.4
+2026-07-08T16:31:50.8529177Z LTS
+2026-07-08T16:31:50.8530117Z ##[endgroup]
+2026-07-08T16:31:50.8530750Z ##[group]Runner Image
+2026-07-08T16:31:50.8531365Z Image: ubuntu-24.04
+2026-07-08T16:31:50.8531937Z Version: 20260628.225.1
+2026-07-08T16:31:50.8533086Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260628.225/images/ubuntu/Ubuntu2404-Readme.md
+2026-07-08T16:31:50.8534876Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260628.225
+2026-07-08T16:31:50.8535859Z ##[endgroup]
+2026-07-08T16:31:50.8537115Z ##[group]GITHUB_TOKEN Permissions
+2026-07-08T16:31:50.8539400Z Contents: read
+2026-07-08T16:31:50.8540356Z Metadata: read
+2026-07-08T16:31:50.8541036Z Packages: read
+2026-07-08T16:31:50.8541615Z ##[endgroup]
+2026-07-08T16:31:50.8543807Z Secret source: Actions
+2026-07-08T16:31:50.8545077Z Prepare workflow directory
+2026-07-08T16:31:50.8883433Z Prepare all required actions
+2026-07-08T16:31:50.8923034Z Getting action download info
+2026-07-08T16:31:51.1637356Z Download action repository 'actions/checkout@v5' (SHA:93cb6efe18208431cddfb8368fd83d5badbf9bfd)
+2026-07-08T16:31:51.2368253Z Download action repository 'actions/setup-java@v5' (SHA:0f481fcb613427c0f801b606911222b5b6f3083a)
+2026-07-08T16:31:51.8573312Z Download action repository 'actions/upload-artifact@v5' (SHA:330a01c490aca151604b8cf639adc76d48f6c5d4)
+2026-07-08T16:31:52.1467156Z Complete job name: run-tests

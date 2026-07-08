@@ -33,11 +33,16 @@ kotlin {
     }
 
     // HarmonyOS target via Kotlin/Native
-    val harmonyOSArm64 by creating {
-        binaries.sharedLib {
-            baseName = "shared"
-        }
-    }
+    // NOTE: harmonyOSArm64 is NOT a standard Kotlin/Native 2.3.21 target.
+    // It requires a custom Kotlin-OHOS fork or KuiklyBase toolchain extension.
+    // For now, this target is disabled to keep JVM/Android builds working.
+    // To enable: use Kotlin-OHOS compiler or KuiklyBase LLVM toolchain.
+    //
+    // val harmonyOSArm64 by creating {
+    //     binaries.sharedLib {
+    //         baseName = "shared"
+    //     }
+    // }
 
     sourceSets {
         val commonMain by getting {
@@ -114,13 +119,13 @@ kotlin {
             }
         }
 
-        val harmonyOSArm64Main by getting {
-            dependsOn(commonMain)
-            dependencies {
-                implementation(libs.sql.delight.native.driver)
-                implementation(libs.ktor.client.curl)
-            }
-        }
+        // val harmonyOSArm64Main by getting {
+        //     dependsOn(commonMain)
+        //     dependencies {
+        //         implementation(libs.sql.delight.native.driver)
+        //         implementation(libs.ktor.client.curl)
+        //     }
+        // }
     }
 }
 
