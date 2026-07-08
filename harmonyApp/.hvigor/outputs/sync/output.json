@@ -2,26 +2,26 @@
   "version": 1,
   "ohos-module-entry": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build",
+    "MODULE_BUILD_DIR": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build",
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\src\\main",
+        "SOURCE_ROOT": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\src\\main\\resources"
+          "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
-          "SOURCE_MAP_DIR": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry\\build\\default\\intermediates\\source_map\\default"
+          "OUTPUT_PATH": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
+          "SOURCE_MAP_DIR": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry\\build\\default\\intermediates\\source_map\\default"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -69,17 +69,17 @@
   },
   "ohos-project": {
     "SELECT_PRODUCT_NAME": "default",
-    "MODULE_BUILD_DIR": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\build",
+    "MODULE_BUILD_DIR": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\build",
     "BUNDLE_NAME": "io.legado.app",
     "VERSION_CODE": 30000,
     "VERSION_NAME": "3.0.0",
     "BUILD_PATH": {
-      "OUTPUT_PATH": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\build\\outputs\\default"
+      "OUTPUT_PATH": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\build\\outputs\\default"
     },
     "MODULES": [
       {
         "name": "entry",
-        "srcPath": "D:\\study\\KMPDemo\\legado-master\\harmonyApp\\entry",
+        "srcPath": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp\\entry",
         "targets": [
           {
             "name": "default",
@@ -88,7 +88,7 @@
             ]
           }
         ],
-        "belongProjectPath": "D:\\study\\KMPDemo\\legado-master\\harmonyApp"
+        "belongProjectPath": "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp"
       }
     ],
     "PROFILE_OPT": {
@@ -139,7 +139,7 @@
       "hvigor.keepDependency": true
     },
     "OVERALL_PROJECT_PATHS": [
-      "D:\\study\\KMPDemo\\legado-master\\harmonyApp"
+      "D:\\study\\KMPDemo\\legado-kmp\\harmonyApp"
     ],
     "BUILD_CACHE_DIR": ""
   }

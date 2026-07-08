@@ -3,6 +3,9 @@ package io.legado.shared.data
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 
+/**
+ * Android application context - initialized from platform side.
+ */
 lateinit var androidAppContext: android.content.Context
 
 actual class DatabaseDriverFactory {
