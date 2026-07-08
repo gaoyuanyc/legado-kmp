@@ -1,113 +1,131 @@
-﻿name: Build libshared.so for HarmonyOS
+﻿name: Build libshared.so (Kotlin-OHOS)
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - 'shared/**'
-  pull_request:
-    paths:
-      - 'shared/**'
-  workflow_dispatch:
+    paths: ['shared/**']
 
 jobs:
   build-harmony-so:
-    runs-on: macos-26
+    runs-on: macos-26  # Apple Silicon ARM64
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Set up JDK 17
+      # 1. Set up JDK 8 (aarch64) for Kotlin cinterop
+      - name: Set up JDK 8 (aarch64)
         uses: actions/setup-java@v5
+        id: jdk8
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '8'
+          architecture: aarch64
 
+      # 2. Set up JDK 21 for Gradle
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        id: jdk21
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      # 3. Download Kotlin-OHOS prebuilt toolchain
+      - name: Download Kotlin-OHOS toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.konan
+
+          # Download prebuilt Kotlin/Native for OHOS
+          # From zxystd/Kotlin-OHOS releases
+          TOOLCHAIN_URL="https://github.com/zxystd/Kotlin-OHOS/releases/download/v2.1.255-SNAPSHOT/kotlin-native-prebuilt-macos-aarch64-2.1.255-SNAPSHOT.tar.gz"
+
+          echo "Downloading Kotlin-OHOS toolchain..."
+          curl -sSL -o /tmp/kn-ohos.tar.gz "$TOOLCHAIN_URL" || {
+            echo "WARN: Could not download from primary URL, trying alternative..."
+            curl -sSL -o /tmp/kn-ohos.tar.gz \
+              "https://github.com/zxystd/Kotlin-OHOS/releases/latest/download/kotlin-native-prebuilt-macos-aarch64-2.1.255-SNAPSHOT.tar.gz" \
+              || echo "WARN: Download failed"
+          }
+
+          if [ -f /tmp/kn-ohos.tar.gz ]; then
+            echo "Extracting toolchain..."
+            tar -xf /tmp/kn-ohos.tar.gz -C ~/.konan/
+            echo "Toolchain extracted to ~/.konan/"
+            ls -la ~/.konan/
+          else
+            echo "ERROR: Could not download Kotlin-OHOS toolchain"
+            exit 1
+          fi
+
+      # 4. Download KuiklyBase LLVM toolchain
+      - name: Download LLVM toolchain
+        run: |
+          set -euo pipefail
+
+          # LLVM toolchain for OHOS compilation
+          LLVM_URL="https://github.com/linhandev/KuiklyBase-kotlin/releases/download/llvm-ohos-2/LLVM-19.1.7-ohos-2.tar.gz"
+
+          echo "Downloading LLVM toolchain..."
+          curl -sSL -o /tmp/llvm.tar.gz "$LLVM_URL" || echo "WARN: LLVM download failed"
+
+          if [ -f /tmp/llvm.tar.gz ]; then
+            tar -xf /tmp/llvm.tar.gz -C ~/.konan/ 2>/dev/null || true
+            echo "LLVM extracted"
+          fi
+
+          # Download OHOS sysroot
+          SYSROOT_URL="https://kotlinnativeohos.online/download/sysroot-ohos-aarch64-5.0.11.110.tar.gz"
+          echo "Downloading OHOS sysroot..."
+          curl -sSL -o /tmp/sysroot.tar.gz "$SYSROOT_URL" || echo "WARN: Sysroot download failed"
+
+          if [ -f /tmp/sysroot.tar.gz ]; then
+            tar -xf /tmp/sysroot.tar.gz -C ~/.konan/ 2>/dev/null || true
+            echo "Sysroot extracted"
+          fi
+
+          ls -la ~/.konan/
+
+      # 5. Configure Gradle
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-home-cache-cleanup: true
 
-      # 1. Try standard Kotlin/Native harmonyOSArm64 target first
-      - name: Attempt harmonyOSArm64 build
-        continue-on-error: true
-        id: attempt_build
+      # 6. Build libshared.so
+      - name: Build libshared.so
         run: |
-          echo "=== Attempting standard harmonyOSArm64 build ==="
-          ./gradlew :shared:linkHarmonyOSArm64 --no-daemon --stacktrace 2>&1 | tee build.log
-          if grep -q "BUILD SUCCESSFUL" build.log; then
-            echo "status=success" >> $GITHUB_OUTPUT
-          else
-            echo "status=failure" >> $GITHUB_OUTPUT
-          fi
+          export JAVA_HOME=${{ steps.jdk21.outputs.path }}
+          export JDK_18=${{ steps.jdk8.outputs.path }}
+          export KONAN_DATA_DIR=$HOME/.konan
 
-      # 2. If standard fails, try with KuiklyBase toolchain
-      - name: Setup OHOS toolchain (fallback)
-        if: steps.attempt_build.outputs.status == 'failure'
-        run: |
-          set -euo pipefail
-          mkdir -p ~/.konan
-          echo "Downloading OHOS LLVM toolchain..."
-          curl -sSL -o /tmp/llvm-ohos.tar.gz \
-            "https://github.com/linhandev/KuiklyBase-kotlin/releases/download/llvm-ohos-2/LLVM-19.1.7-ohos-2.tar.gz" \
-            || echo "WARN: Could not download LLVM"
-          if [ -f /tmp/llvm-ohos.tar.gz ]; then
-            tar -xf /tmp/llvm-ohos.tar.gz -C ~/.konan/ 2>/dev/null || true
-            echo "LLVM toolchain extracted"
-          fi
-          curl -sSL -o /tmp/sysroot-ohos.tar.gz \
-            "https://kotlinnativeohos.online/download/sysroot-ohos-aarch64-5.0.11.110.tar.gz" \
-            || echo "WARN: Could not download sysroot"
-          if [ -f /tmp/sysroot-ohos.tar.gz ]; then
-            tar -xf /tmp/sysroot-ohos.tar.gz -C ~/.konan/ 2>/dev/null || true
-            echo "Sysroot extracted"
-          fi
-          ls -la ~/.konan/ 2>/dev/null || true
+          echo "=== Building libshared.so ==="
+          ./gradlew :shared:linkHarmonyOSArm64 \
+            --no-daemon \
+            --stacktrace \
+            -Pkn-native-preinstalled=$HOME/.konan
 
-      # 3. Retry build with toolchain
-      - name: Retry build with OHOS toolchain
-        if: steps.attempt_build.outputs.status == 'failure'
-        continue-on-error: true
-        run: |
-          echo "=== Retrying build with OHOS toolchain ==="
-          ./gradlew :shared:linkHarmonyOSArm64 --no-daemon --stacktrace 2>&1 | tee build2.log
-
-      # 4. Report status
-      - name: Report build status
-        run: |
-          echo "=== Build Status Report ==="
-          if grep -q "BUILD SUCCESSFUL" build.log 2>/dev/null; then
-            echo "Standard build succeeded"
-          elif grep -q "BUILD SUCCESSFUL" build2.log 2>/dev/null; then
-            echo "Build with OHOS toolchain succeeded"
-          else
-            echo "Builds failed - target requires custom toolchain"
-            echo "Standard Kotlin/Native 2.3.21 does not include harmonyOSArm64 target."
-            echo "Options:"
-            echo "  1. Use Kotlin-OHOS fork with custom target"
-            echo "  2. Use KuiklyBase toolchain extension"
-            echo "  3. Build on local macOS with DevEco Studio + KBA toolchain"
-          fi
-
-      # 5. Check for outputs
-      - name: Check build outputs
+      # 7. Verify outputs
+      - name: Verify outputs
         run: |
           echo "=== Searching for .so files ==="
-          find shared/build -name "*.so" -exec ls -lh {} \; 2>/dev/null || echo "No .so files found"
+          find shared/build -name "*.so" -exec ls -lh {} \; 2>/dev/null || echo "No .so files"
+          find shared/build -name "*.h" -exec ls -lh {} \; 2>/dev/null || echo "No .h files"
 
-      - name: Upload artifacts (if any)
+      # 8. Upload artifacts
+      - name: Upload libshared.so
         if: always()
         uses: actions/upload-artifact@v5
         with:
-          name: harmony-build-attempt
+          name: libshared-harmonyos
           path: |
-            shared/build/**/*.so
-            shared/build/**/*.h
-            build*.log
-          retention-days: 7
+            shared/build/bin/**/*.so
+            shared/build/bin/**/*.h
+          retention-days: 30
           if-no-files-found: ignore
 
+  # Always run JVM tests
   run-tests:
     runs-on: ubuntu-latest
 
