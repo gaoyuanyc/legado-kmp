@@ -91,7 +91,7 @@ kotlin {
                 implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
                 
                 // Ktor JVM engine (CIO)
-                implementation("io.ktor:ktor-client-cio:3.1.0")
+                implementation("io.ktor:ktor-client-cio:3.5.1")
                 
                 // Jsoup for HTML parsing
                 implementation("org.jsoup:jsoup:1.16.2")
