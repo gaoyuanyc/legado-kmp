@@ -1,35 +1,33 @@
 ﻿package io.legado.android
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import android.os.Bundle
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import io.legado.android.ui.LegadoNavigation
 import io.legado.android.ui.theme.LegadoTheme
+import io.legado.shared.model.Book
+import io.legado.shared.model.BookSource
+import io.legado.android.ComposeActivity
 
 class MainActivity : ComposeActivity() {
 
     override val content: @Composable () -> Unit = {
         LegadoTheme {
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                color = MaterialTheme.colorScheme.background
-            ) {
-                LegadoHomeScreen()
-            }
+            LegadoNavigation(
+                books = sampleBooks,
+                sources = sampleSources
+            )
         }
     }
-}
 
-@Composable
-fun LegadoHomeScreen() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text("Legado KMP", style = MaterialTheme.typography.headlineMedium)
+    companion object {
+        // Sample data for development
+        private val sampleBooks = listOf(
+            Book(name = "Sample Novel", author = "Author One", durChapterTitle = "Chapter 1"),
+            Book(name = "Another Book", author = "Author Two", durChapterTitle = "Chapter 5")
+        )
+        private val sampleSources = listOf(
+            BookSource(bookSourceName = "Example Source", bookSourceUrl = "https://example.com", enabled = true),
+            BookSource(bookSourceName = "Another Source", bookSourceUrl = "https://another.com", enabled = false)
+        )
     }
 }
