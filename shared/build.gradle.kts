@@ -77,7 +77,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
-                implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
+                implementation("app.cash.sqldelight:sqlite-driver:2.3.2")
             }
         }
 
@@ -88,7 +88,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
                 
                 // SQLDelight JVM driver
-                implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
+                implementation("app.cash.sqldelight:sqlite-driver:2.3.2")
                 
                 // Ktor JVM engine (CIO)
                 implementation("io.ktor:ktor-client-cio:3.1.0")
@@ -107,7 +107,7 @@ kotlin {
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
+                implementation("app.cash.sqldelight:sqlite-driver:2.3.2")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
             }
         }
