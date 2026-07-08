@@ -1,0 +1,38 @@
+﻿2026-07-08T17:03:44.8876830Z ##[group]Run actions/setup-java@v5
+2026-07-08T17:03:44.8877200Z with:
+2026-07-08T17:03:44.8877340Z   distribution: zulu
+2026-07-08T17:03:44.8877520Z   java-version: 8
+2026-07-08T17:03:44.8877680Z   architecture: aarch64
+2026-07-08T17:03:44.8877860Z   java-package: jdk
+2026-07-08T17:03:44.8878010Z   check-latest: false
+2026-07-08T17:03:44.8878190Z   set-default: true
+2026-07-08T17:03:44.8878340Z   verify-signature: false
+2026-07-08T17:03:44.8878500Z   server-id: github
+2026-07-08T17:03:44.8878660Z   server-username: GITHUB_ACTOR
+2026-07-08T17:03:44.8878860Z   server-password: GITHUB_TOKEN
+2026-07-08T17:03:44.8879050Z   overwrite-settings: true
+2026-07-08T17:03:44.8879220Z   job-status: success
+2026-07-08T17:03:44.8881310Z   token: ***
+2026-07-08T17:03:44.8881480Z   show-download-progress: false
+2026-07-08T17:03:44.8881690Z ##[endgroup]
+2026-07-08T17:03:45.2353050Z ##[group]Installed distributions
+2026-07-08T17:03:45.2490960Z Trying to resolve the latest version from remote
+2026-07-08T17:03:45.3793630Z Resolved latest version as 8.0.492+9
+2026-07-08T17:03:45.3795700Z Trying to download...
+2026-07-08T17:03:45.3799490Z Downloading Java 8.0.492+9 (Zulu) from https://cdn.azul.com/zulu/bin/zulu8.94.0.17-ca-jdk8.0.492-macosx_aarch64.tar.gz ...
+2026-07-08T17:03:47.1124470Z Extracting Java archive...
+2026-07-08T17:03:47.1425650Z [command]/usr/bin/tar xz -C /Users/runner/work/_temp/446285a9-c856-42ed-92b8-c92d04cc82cb -f /Users/runner/work/_temp/eb471ab9-8ebf-4d88-9c10-79391217a739
+2026-07-08T17:03:48.9834930Z Java 8.0.492+9 was downloaded
+2026-07-08T17:03:48.9846230Z Setting Java 8.0.492+9 as the default
+2026-07-08T17:03:48.9890980Z Creating toolchains.xml for JDK version 8 from zulu
+2026-07-08T17:03:49.0025170Z Writing to /Users/runner/.m2/toolchains.xml
+2026-07-08T17:03:49.0029560Z 
+2026-07-08T17:03:49.0032290Z Java configuration:
+2026-07-08T17:03:49.0033020Z   Distribution: zulu
+2026-07-08T17:03:49.0034890Z   Version: 8.0.492+9
+2026-07-08T17:03:49.0035970Z   Path: /Users/runner/hostedtoolcache/Java_Zulu_jdk/8.0.492-9/aarch64/Contents/Home
+2026-07-08T17:03:49.0036530Z 
+2026-07-08T17:03:49.0037400Z ##[endgroup]
+2026-07-08T17:03:49.0172890Z Creating settings.xml with server-id: github
+2026-07-08T17:03:49.0173590Z Writing to /Users/runner/.m2/settings.xml
+2026-07-08T17:03:49.0174270Z Configured MAVEN_ARGS to include -ntp to suppress Maven transfer progress logs. Set 'show-download-progress: true' to keep the download progress output.

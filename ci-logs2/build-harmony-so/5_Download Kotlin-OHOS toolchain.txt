@@ -1,0 +1,36 @@
+﻿2026-07-08T17:03:49.5436300Z ##[group]Run set -euo pipefail
+2026-07-08T17:03:49.5437440Z [36;1mset -euo pipefail[0m
+2026-07-08T17:03:49.5438020Z [36;1mmkdir -p ~/.konan[0m
+2026-07-08T17:03:49.5438500Z [36;1m[0m
+2026-07-08T17:03:49.5439010Z [36;1m# Download prebuilt Kotlin/Native for OHOS[0m
+2026-07-08T17:03:49.5439710Z [36;1m# From zxystd/Kotlin-OHOS releases[0m
+2026-07-08T17:03:49.5441300Z [36;1mTOOLCHAIN_URL="https://github.com/zxystd/Kotlin-OHOS/releases/download/v2.1.255-SNAPSHOT/kotlin-native-prebuilt-macos-aarch64-2.1.255-SNAPSHOT.tar.gz"[0m
+2026-07-08T17:03:49.5442830Z [36;1m[0m
+2026-07-08T17:03:49.5443330Z [36;1mecho "Downloading Kotlin-OHOS toolchain..."[0m
+2026-07-08T17:03:49.5444130Z [36;1mcurl -sSL -o /tmp/kn-ohos.tar.gz "$TOOLCHAIN_URL" || {[0m
+2026-07-08T17:03:49.5445120Z [36;1m  echo "WARN: Could not download from primary URL, trying alternative..."[0m
+2026-07-08T17:03:49.5446600Z [36;1m  curl -sSL -o /tmp/kn-ohos.tar.gz \[0m
+2026-07-08T17:03:49.5448070Z [36;1m    "https://github.com/zxystd/Kotlin-OHOS/releases/latest/download/kotlin-native-prebuilt-macos-aarch64-2.1.255-SNAPSHOT.tar.gz" \[0m
+2026-07-08T17:03:49.5449680Z [36;1m    || echo "WARN: Download failed"[0m
+2026-07-08T17:03:49.5450350Z [36;1m}[0m
+2026-07-08T17:03:49.5450560Z [36;1m[0m
+2026-07-08T17:03:49.5450740Z [36;1mif [ -f /tmp/kn-ohos.tar.gz ]; then[0m
+2026-07-08T17:03:49.5451000Z [36;1m  echo "Extracting toolchain..."[0m
+2026-07-08T17:03:49.5451260Z [36;1m  tar -xf /tmp/kn-ohos.tar.gz -C ~/.konan/[0m
+2026-07-08T17:03:49.5451560Z [36;1m  echo "Toolchain extracted to ~/.konan/"[0m
+2026-07-08T17:03:49.5451800Z [36;1m  ls -la ~/.konan/[0m
+2026-07-08T17:03:49.5452420Z [36;1melse[0m
+2026-07-08T17:03:49.5452710Z [36;1m  echo "ERROR: Could not download Kotlin-OHOS toolchain"[0m
+2026-07-08T17:03:49.5453020Z [36;1m  exit 1[0m
+2026-07-08T17:03:49.5453180Z [36;1mfi[0m
+2026-07-08T17:03:49.5554560Z shell: /bin/bash -e {0}
+2026-07-08T17:03:49.5554840Z env:
+2026-07-08T17:03:49.5555220Z   JAVA_HOME: /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.11-10.0/arm64/Contents/Home
+2026-07-08T17:03:49.5555820Z   JAVA_HOME_8_AARCH64: /Users/runner/hostedtoolcache/Java_Zulu_jdk/8.0.492-9/aarch64/Contents/Home
+2026-07-08T17:03:49.5556190Z   MAVEN_ARGS: -ntp
+2026-07-08T17:03:49.5556560Z   JAVA_HOME_21_ARM64: /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.11-10.0/arm64/Contents/Home
+2026-07-08T17:03:49.5556990Z ##[endgroup]
+2026-07-08T17:03:49.6019580Z Downloading Kotlin-OHOS toolchain...
+2026-07-08T17:03:49.8677290Z Extracting toolchain...
+2026-07-08T17:03:49.8755930Z tar: Error opening archive: Unrecognized archive format
+2026-07-08T17:03:49.8796650Z ##[error]Process completed with exit code 1.

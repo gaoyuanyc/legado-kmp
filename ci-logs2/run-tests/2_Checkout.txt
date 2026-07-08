@@ -1,0 +1,72 @@
+﻿2026-07-08T17:03:38.1694730Z ##[group]Run actions/checkout@v5
+2026-07-08T17:03:38.1695631Z with:
+2026-07-08T17:03:38.1696089Z   repository: gaoyuanyc/legado-kmp
+2026-07-08T17:03:38.1700127Z   token: ***
+2026-07-08T17:03:38.1700576Z   ssh-strict: true
+2026-07-08T17:03:38.1701013Z   ssh-user: git
+2026-07-08T17:03:38.1701456Z   persist-credentials: true
+2026-07-08T17:03:38.1701953Z   clean: true
+2026-07-08T17:03:38.1702405Z   sparse-checkout-cone-mode: true
+2026-07-08T17:03:38.1702922Z   fetch-depth: 1
+2026-07-08T17:03:38.1703341Z   fetch-tags: false
+2026-07-08T17:03:38.1703783Z   show-progress: true
+2026-07-08T17:03:38.1704227Z   lfs: false
+2026-07-08T17:03:38.1704643Z   submodules: false
+2026-07-08T17:03:38.1705087Z   set-safe-directory: true
+2026-07-08T17:03:38.1705811Z ##[endgroup]
+2026-07-08T17:03:38.2809822Z Syncing repository: gaoyuanyc/legado-kmp
+2026-07-08T17:03:38.2812533Z ##[group]Getting Git version info
+2026-07-08T17:03:38.2813775Z Working directory is '/home/runner/work/legado-kmp/legado-kmp'
+2026-07-08T17:03:38.2823292Z [command]/usr/bin/git version
+2026-07-08T17:03:38.3068014Z git version 2.54.0
+2026-07-08T17:03:38.3078275Z ##[endgroup]
+2026-07-08T17:03:38.3083068Z Temporarily overriding HOME='/home/runner/work/_temp/d335c044-3239-4021-9c2e-5600139410b1' before making global git config changes
+2026-07-08T17:03:38.3084462Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-08T17:03:38.3086320Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/legado-kmp/legado-kmp
+2026-07-08T17:03:38.3132189Z Deleting the contents of '/home/runner/work/legado-kmp/legado-kmp'
+2026-07-08T17:03:38.3136697Z ##[group]Initializing the repository
+2026-07-08T17:03:38.3142362Z [command]/usr/bin/git init /home/runner/work/legado-kmp/legado-kmp
+2026-07-08T17:03:38.3271119Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-07-08T17:03:38.3272738Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-07-08T17:03:38.3273967Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-07-08T17:03:38.3275058Z hint: call:
+2026-07-08T17:03:38.3275759Z hint:
+2026-07-08T17:03:38.3276612Z hint: 	git config --global init.defaultBranch <name>
+2026-07-08T17:03:38.3277854Z hint:
+2026-07-08T17:03:38.3278872Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-07-08T17:03:38.3280454Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-07-08T17:03:38.3281403Z hint:
+2026-07-08T17:03:38.3281881Z hint: 	git branch -m <name>
+2026-07-08T17:03:38.3282624Z hint:
+2026-07-08T17:03:38.3283567Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-07-08T17:03:38.3284849Z Initialized empty Git repository in /home/runner/work/legado-kmp/legado-kmp/.git/
+2026-07-08T17:03:38.3293397Z [command]/usr/bin/git remote add origin https://github.com/gaoyuanyc/legado-kmp
+2026-07-08T17:03:38.3347929Z ##[endgroup]
+2026-07-08T17:03:38.3349204Z ##[group]Disabling automatic garbage collection
+2026-07-08T17:03:38.3353036Z [command]/usr/bin/git config --local gc.auto 0
+2026-07-08T17:03:38.3404851Z ##[endgroup]
+2026-07-08T17:03:38.3406492Z ##[group]Setting up auth
+2026-07-08T17:03:38.3419676Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-08T17:03:38.3460516Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-08T17:03:38.3881764Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-08T17:03:38.3916345Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-08T17:03:38.4144514Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-08T17:03:38.4181458Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-08T17:03:38.4404910Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-07-08T17:03:38.4442530Z ##[endgroup]
+2026-07-08T17:03:38.4443898Z ##[group]Fetching the repository
+2026-07-08T17:03:38.4454566Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9cc2be8d548fd98aff09e76f0d35de902aa514b5:refs/remotes/origin/main
+2026-07-08T17:03:38.7409242Z From https://github.com/gaoyuanyc/legado-kmp
+2026-07-08T17:03:38.7411404Z  * [new ref]         9cc2be8d548fd98aff09e76f0d35de902aa514b5 -> origin/main
+2026-07-08T17:03:38.7448155Z ##[endgroup]
+2026-07-08T17:03:38.7449963Z ##[group]Determining the checkout info
+2026-07-08T17:03:38.7451963Z ##[endgroup]
+2026-07-08T17:03:38.7458410Z [command]/usr/bin/git sparse-checkout disable
+2026-07-08T17:03:38.7512677Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-07-08T17:03:38.7549101Z ##[group]Checking out the ref
+2026-07-08T17:03:38.7553379Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-07-08T17:03:38.7816399Z Switched to a new branch 'main'
+2026-07-08T17:03:38.7819352Z branch 'main' set up to track 'origin/main'.
+2026-07-08T17:03:38.7828365Z ##[endgroup]
+2026-07-08T17:03:38.7878439Z [command]/usr/bin/git log -1 --format=%H
+2026-07-08T17:03:38.7906811Z 9cc2be8d548fd98aff09e76f0d35de902aa514b5

@@ -1,0 +1,76 @@
+﻿2026-07-08T17:03:46.7556331Z ##[group]Run ./gradlew :shared:jvmTest --no-daemon
+2026-07-08T17:03:46.7556832Z [36;1m./gradlew :shared:jvmTest --no-daemon[0m
+2026-07-08T17:03:46.9875385Z shell: /usr/bin/bash -e {0}
+2026-07-08T17:03:46.9875732Z env:
+2026-07-08T17:03:46.9876052Z   JAVA_HOME: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/x64
+2026-07-08T17:03:46.9876532Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/x64
+2026-07-08T17:03:46.9876948Z   MAVEN_ARGS: -ntp
+2026-07-08T17:03:46.9877544Z ##[endgroup]
+2026-07-08T17:03:47.0929923Z Downloading https://services.gradle.org/distributions/gradle-8.14.4-bin.zip
+2026-07-08T17:03:48.9264321Z ...................................................................................................................................
+2026-07-08T17:03:48.9266816Z Unzipping /home/runner/.gradle/wrapper/dists/gradle-8.14.4-bin/92wwslzcyst3phie3o264zltu/gradle-8.14.4-bin.zip to /home/runner/.gradle/wrapper/dists/gradle-8.14.4-bin/92wwslzcyst3phie3o264zltu
+2026-07-08T17:03:49.6526016Z Set executable permissions for: /home/runner/.gradle/wrapper/dists/gradle-8.14.4-bin/92wwslzcyst3phie3o264zltu/gradle-8.14.4/bin/gradle
+2026-07-08T17:03:50.1083588Z 
+2026-07-08T17:03:50.1092171Z Welcome to Gradle 8.14.4!
+2026-07-08T17:03:50.1107741Z 
+2026-07-08T17:03:50.1117959Z Here are the highlights of this release:
+2026-07-08T17:03:50.1147916Z  - Java 24 support
+2026-07-08T17:03:50.1177805Z  - GraalVM Native Image toolchain selection
+2026-07-08T17:03:50.1187987Z  - Enhancements to test reporting
+2026-07-08T17:03:50.1203637Z  - Build Authoring improvements
+2026-07-08T17:03:50.1227651Z 
+2026-07-08T17:03:50.1239552Z For more details see https://docs.gradle.org/8.14.4/release-notes.html
+2026-07-08T17:03:50.1240386Z 
+2026-07-08T17:03:50.2048140Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.4/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+2026-07-08T17:03:51.2047837Z Daemon will be stopped at the end of the build 
+2026-07-08T17:04:43.1049781Z 
+2026-07-08T17:04:43.1073030Z e: file:///home/runner/work/legado-kmp/legado-kmp/shared/build.gradle.kts:37:5: Unresolved reference: harmonyOSArm64
+2026-07-08T17:04:43.1074082Z > Configure project :shared
+2026-07-08T17:04:43.1098408Z w: ⚠️ Missing `androidTarget()` in Kotlin Multiplatform Project
+2026-07-08T17:04:43.1099647Z e: file:///home/runner/work/legado-kmp/legado-kmp/shared/build.gradle.kts:38:9: Unresolved reference: binaries
+2026-07-08T17:04:43.1100833Z Missing `androidTarget()` Kotlin target in multiplatform project 'shared (:shared)'.
+2026-07-08T17:04:43.1102013Z e: file:///home/runner/work/legado-kmp/legado-kmp/shared/build.gradle.kts:39:13: Unresolved reference: baseName
+2026-07-08T17:04:43.1103293Z The Android Gradle plugin was applied without creating a corresponding `androidTarget()` Kotlin Target
+2026-07-08T17:04:43.1104114Z ```
+2026-07-08T17:04:43.1104438Z plugins {
+2026-07-08T17:04:43.1104810Z     id("com.android.library")
+2026-07-08T17:04:43.1105247Z     kotlin("multiplatform")
+2026-07-08T17:04:43.1105644Z }
+2026-07-08T17:04:43.1105802Z 
+2026-07-08T17:04:43.1105935Z kotlin {
+2026-07-08T17:04:43.1106384Z     androidTarget() // <-- please register this Android target
+2026-07-08T17:04:43.1106938Z }
+2026-07-08T17:04:43.1107438Z ```
+2026-07-08T17:04:43.1107802Z Solution: Please register the Android target.
+2026-07-08T17:04:43.1108158Z 
+2026-07-08T17:04:43.2043701Z 
+2026-07-08T17:04:43.2055196Z FAILURE: Build failed with an exception.
+2026-07-08T17:04:43.2055946Z SQLDelight Gradle plugin was applied but there are no databases set up.
+2026-07-08T17:04:43.2056754Z 
+2026-07-08T17:04:43.2056947Z 
+2026-07-08T17:04:43.2058667Z [Incubating] Problems report is available at: file:///home/runner/work/legado-kmp/legado-kmp/build/reports/problems/problems-report.html
+2026-07-08T17:04:43.2060119Z * Where:
+2026-07-08T17:04:43.2062893Z Build file '/home/runner/work/legado-kmp/legado-kmp/shared/build.gradle.kts' line: 37
+2026-07-08T17:04:43.2063863Z 
+2026-07-08T17:04:43.2064743Z * What went wrong:
+2026-07-08T17:04:43.2065331Z Script compilation errors:
+2026-07-08T17:04:43.2065814Z 
+2026-07-08T17:04:43.2066178Z   Line 37:     harmonyOSArm64 {
+2026-07-08T17:04:43.2066853Z                ^ Unresolved reference: harmonyOSArm64
+2026-07-08T17:04:43.2067706Z 
+2026-07-08T17:04:43.2068109Z   Line 38:         binaries.sharedLib {
+2026-07-08T17:04:43.2068859Z                    ^ Unresolved reference: binaries
+2026-07-08T17:04:43.2069418Z 
+2026-07-08T17:04:43.2069796Z   Line 39:             baseName = "shared"
+2026-07-08T17:04:43.2070543Z                        ^ Unresolved reference: baseName
+2026-07-08T17:04:43.2071131Z 
+2026-07-08T17:04:43.2071501Z 3 errors
+2026-07-08T17:04:43.2071911Z 
+2026-07-08T17:04:43.2072261Z * Try:
+2026-07-08T17:04:43.2073039Z > Run with --stacktrace option to get the stack trace.
+2026-07-08T17:04:43.2086073Z > Run with --info or --debug option to get more log output.
+2026-07-08T17:04:43.2087052Z > Run with --scan to get full insights.
+2026-07-08T17:04:43.2088154Z > Get more help at https://help.gradle.org.
+2026-07-08T17:04:43.2088750Z 
+2026-07-08T17:04:43.2089131Z BUILD FAILED in 56s
+2026-07-08T17:04:43.4028846Z ##[error]Process completed with exit code 1.

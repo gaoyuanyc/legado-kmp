@@ -1,0 +1,37 @@
+﻿2026-07-08T17:03:38.8335787Z ##[group]Run actions/setup-java@v5
+2026-07-08T17:03:38.8336971Z with:
+2026-07-08T17:03:38.8338082Z   distribution: zulu
+2026-07-08T17:03:38.8339034Z   java-version: 17
+2026-07-08T17:03:38.8339943Z   java-package: jdk
+2026-07-08T17:03:38.8340867Z   check-latest: false
+2026-07-08T17:03:38.8341833Z   set-default: true
+2026-07-08T17:03:38.8342767Z   verify-signature: false
+2026-07-08T17:03:38.8343979Z   server-id: github
+2026-07-08T17:03:38.8344922Z   server-username: GITHUB_ACTOR
+2026-07-08T17:03:38.8346025Z   server-password: GITHUB_TOKEN
+2026-07-08T17:03:38.8347245Z   overwrite-settings: true
+2026-07-08T17:03:38.8348240Z   job-status: success
+2026-07-08T17:03:38.8357322Z   token: ***
+2026-07-08T17:03:38.8358244Z   show-download-progress: false
+2026-07-08T17:03:38.8359277Z ##[endgroup]
+2026-07-08T17:03:39.0074351Z ##[group]Installed distributions
+2026-07-08T17:03:39.0125975Z Trying to resolve the latest version from remote
+2026-07-08T17:03:39.0838708Z Resolved latest version as 17.0.19+10
+2026-07-08T17:03:39.0839909Z Trying to download...
+2026-07-08T17:03:39.0841160Z Downloading Java 17.0.19+10 (Zulu) from https://cdn.azul.com/zulu/bin/zulu17.66.19-ca-crac-jdk17.0.19-linux_x64.tar.gz ...
+2026-07-08T17:03:44.0485606Z Extracting Java archive...
+2026-07-08T17:03:44.0649208Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/64c060d2-b6e9-49c0-9735-c266971e132f -f /home/runner/work/_temp/c7e020de-bdda-44c1-b0d2-045fbc238e24
+2026-07-08T17:03:46.7267969Z Java 17.0.19+10 was downloaded
+2026-07-08T17:03:46.7268640Z Setting Java 17.0.19+10 as the default
+2026-07-08T17:03:46.7298061Z Creating toolchains.xml for JDK version 17 from zulu
+2026-07-08T17:03:46.7355791Z Writing to /home/runner/.m2/toolchains.xml
+2026-07-08T17:03:46.7356484Z 
+2026-07-08T17:03:46.7356925Z Java configuration:
+2026-07-08T17:03:46.7357746Z   Distribution: zulu
+2026-07-08T17:03:46.7358286Z   Version: 17.0.19+10
+2026-07-08T17:03:46.7358970Z   Path: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.19-10/x64
+2026-07-08T17:03:46.7359666Z 
+2026-07-08T17:03:46.7379736Z ##[endgroup]
+2026-07-08T17:03:46.7410009Z Creating settings.xml with server-id: github
+2026-07-08T17:03:46.7410691Z Writing to /home/runner/.m2/settings.xml
+2026-07-08T17:03:46.7412100Z Configured MAVEN_ARGS to include -ntp to suppress Maven transfer progress logs. Set 'show-download-progress: true' to keep the download progress output.

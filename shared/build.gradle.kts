@@ -33,12 +33,15 @@ kotlin {
     }
 
     // HarmonyOS target via Kotlin/Native
-    // Uses Kotlin-OHOS fork with custom harmonyOSArm64 target
-    harmonyOSArm64 {
-        binaries.sharedLib {
-            baseName = "shared"
-        }
-    }
+    // NOTE: harmonyOSArm64 is NOT a standard Kotlin/Native 2.3.21 target.
+    // It requires a custom Kotlin-OHOS fork or KuiklyBase toolchain.
+    // Disabled to keep JVM/Android builds working.
+    //
+    // harmonyOSArm64 {
+    //     binaries.sharedLib {
+    //         baseName = "shared"
+    //     }
+    // }
 
     sourceSets {
         val commonMain by getting {
@@ -81,9 +84,23 @@ kotlin {
         val jvmMain by getting {
             dependsOn(commonMain)
             dependencies {
+                // kotlinx.coroutines JVM
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+                
+                // SQLDelight JVM driver
                 implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
+                
+                // Ktor JVM engine (CIO)
                 implementation("io.ktor:ktor-client-cio:3.1.0")
+                
+                // Jsoup for HTML parsing
+                implementation("org.jsoup:jsoup:1.16.2")
+                
+                // Rhino for JS execution
+                implementation("org.mozilla:rhino:1.8.1")
+                
+                // OkHttp for HTTP
+                implementation("com.squareup.okhttp3:okhttp:5.3.2")
             }
         }
 
@@ -110,18 +127,21 @@ kotlin {
                 // Rhino (Android JS engine)
                 implementation("org.mozilla:rhino:1.8.1")
                 
+                // Jsoup for HTML parsing
+                implementation("org.jsoup:jsoup:1.16.2")
+                
                 // kotlinx.coroutines Android
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
             }
         }
 
-        val harmonyOSArm64Main by getting {
-            dependsOn(commonMain)
-            dependencies {
-                implementation(libs.sql.delight.native.driver)
-                implementation(libs.ktor.client.curl)
-            }
-        }
+        // val harmonyOSArm64Main by getting {
+        //     dependsOn(commonMain)
+        //     dependencies {
+        //         implementation(libs.sql.delight.native.driver)
+        //         implementation(libs.ktor.client.curl)
+        //     }
+        // }
     }
 }
 
