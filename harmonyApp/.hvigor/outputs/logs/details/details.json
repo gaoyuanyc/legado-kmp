@@ -36,16 +36,15 @@
         "PACKAGE_JSON": [],
         "MODULE_TYPE": "entry",
         "INCREMENTAL_TASKS": {
-          "COMPILE_ARKTS": false
+          "COMPILE_ARKTS": true
         },
-        "IS_INCREMENTAL_MODULE": false
+        "IS_INCREMENTAL_MODULE": true
       }
     ],
     "NATIVE_COMPILER": "Default",
-    "IS_FULL_BUILD": true,
+    "IS_FULL_BUILD": false,
     "PACKAGE_JSON": [],
-    "BUILD_MODE": "debug",
-    "USE_NORMALIZED_OHMURL": true
+    "BUILD_MODE": "debug"
   },
   "HVIGOR": {
     "IS_INCREMENTAL": true,
@@ -56,43 +55,28 @@
     "BUILD_ANALYSIS_MODE": "normal",
     "TASK_TIME": {
       "923fe53966c6cd9343e11af776cd4b05be315ea4b200b02e4d5dfb0f929b73bf": {
-        "init": 311500,
-        "PreBuild": 108474100,
-        "CreateModuleInfo": 550100,
-        "GenerateMetadata": 2624300,
-        "ConfigureCmake": 251500,
-        "MergeProfile": 4517000,
-        "CreateBuildProfile": 2667500,
-        "PreCheckSyscap": 338000,
-        "GeneratePkgContextInfo": 7825100,
-        "GeneratePkgSdkInfo": 2305500,
-        "ProcessIntegratedHsp": 396600,
-        "BuildNativeWithCmake": 279100,
-        "MakePackInfo": 2912200,
-        "SyscapTransform": 2692500,
-        "ProcessProfile": 108991100,
-        "ProcessRouterMap": 5647400,
-        "ProcessShareConfig": 4466400,
-        "ProcessStartupConfig": 2516800,
-        "BuildNativeWithNinja": 1325400,
-        "ProcessResource": 4355800,
-        "GenerateLoaderJson": 18838400,
-        "ProcessLibs": 14448300,
-        "CompileResource": 330622700,
-        "BuildJS": 2671500,
-        "DoNativeStrip": 1838000500,
-        "CacheNativeLibs": 7707400,
-        "CompileArkTS": 6322388200,
-        "GeneratePkgModuleJson": 2500300,
-        "ProcessCompiledResources": 516300,
-        "PackageHap": 340577800,
-        "PackingCheck": 3141500,
-        "SignHap": 1610300,
-        "CollectDebugSymbol": 826000,
-        "assembleHap": 127200
+        "init": 259400,
+        "CreateModuleInfo": 383900,
+        "ConfigureCmake": 214200,
+        "PreCheckSyscap": 239900,
+        "GeneratePkgSdkInfo": 1787500,
+        "ProcessIntegratedHsp": 438400,
+        "BuildNativeWithCmake": 226700,
+        "SyscapTransform": 2281100,
+        "ProcessStartupConfig": 1802900,
+        "BuildNativeWithNinja": 592400,
+        "BuildJS": 3075700,
+        "CompileArkTS": 939528600,
+        "GeneratePkgModuleJson": 7554400,
+        "ProcessCompiledResources": 580600,
+        "PackageHap": 1850799000,
+        "PackingCheck": 3959900,
+        "SignHap": 2136600,
+        "CollectDebugSymbol": 880100,
+        "assembleHap": 176700
       },
       "APP": {
-        "init": 160500
+        "init": 165100
       }
     },
     "CUSTOM_TASK_TIME": {},
@@ -105,7 +89,7 @@
       "ENABLE_CPP_FUNCTION_LEVEL_INCREMENTAL": false
     },
     "CONFIG_PROPERTIES": {},
-    "TOTAL_TIME": 7411286900,
-    "BUILD_ID": "202607070200080930"
+    "TOTAL_TIME": 2965341400,
+    "BUILD_ID": "202607082355324100"
   }
 }
