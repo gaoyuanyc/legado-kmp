@@ -3,14 +3,18 @@ name: Build libshared.so for HarmonyOS
 on:
   push:
     branches: [main]
+    paths:
+      - 'shared/**'
   pull_request:
-    branches: [main]
+    paths:
+      - 'shared/**'
   workflow_dispatch:
 
 jobs:
-  build-so:
+  build-harmony-so:
+    #-macOS ARM64 runner (Apple Silicon)
     runs-on: macos-26
-
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -26,22 +30,124 @@ jobs:
         with:
           gradle-home-cache-cleanup: true
 
-      - name: Build Android target
+      # 1. Download & install HarmonyOS SDK command-line-tools
+      - name: Install HarmonyOS SDK
         run: |
-          ./gradlew :shared:compileDebugKotlinAndroid --no-daemon --stacktrace
+          set -euo pipefail
+          
+          # Get latest SDK release download URL
+          echo "Fetching HarmonyOS SDK release info..."
+          RELEASE_JSON=$(curl -sSL -H 'Accept: application/vnd.github+json' \
+            https://api.github.com/repos/harmonyos-dev/hos-sdk/releases/latest)
+          
+          # Find macOS ARM64 asset
+          SDK_URL=$(echo "$RELEASE_JSON" | python3 -c "
+          import json, sys
+          data = json.load(sys.stdin)
+          for a in data.get('assets', []):
+              name = a.get('name', '')
+              if 'commandline-tools-mac' in name and name.endswith('.zip'):
+                  print(a['browser_download_url'])
+                  break
+          ")
+          
+          if [ -z "$SDK_URL" ]; then
+            # Fallback to known release
+            SDK_URL="https://github.com/harmonyos-dev/hos-sdk/releases/download/v2.0.2/commandline-tools-mac-2.0.0.2.zip"
+          fi
+          
+          echo "Downloading SDK from: $SDK_URL"
+          curl -sSL -o /tmp/commandline-tools.zip "$SDK_URL"
+          
+          # Install to ~/harmonyOS-sdk
+          echo "Installing SDK..."
+          mkdir -p ~/harmonyOS-sdk
+          unzip -q /tmp/commandline-tools.zip -d /tmp/
+          cp -R /tmp/command-line-tools/* ~/harmonyOS-sdk/ 2>/dev/null || \
+            cp -R /tmp/commandline-tools-*/* ~/harmonyOS-sdk/
+          
+          # Install required SDK components
+          chmod +x ~/harmonyOS-sdk/sdkmanager/bin/sdkmgr 2>/dev/null || true
+          ~/harmonyOS-sdk/sdkmanager/bin/sdkmgr install toolchains:9 --accept-license || true
+          
+          # Setup environment
+          echo "~/harmonyOS-sdk/bin" >> $GITHUB_PATH
+          echo "HARMONY_SDK_ROOT=$HOME/harmonyOS-sdk" >> $GITHUB_ENV
+          
+          echo "SDK installation complete"
+          ls -la ~/harmonyOS-sdk/
+
+      # 2. Setup Kotlin/Native toolchain for HarmonyOS
+      - name: Setup Kotlin Native toolchain
+        run: |
+          set -euo pipefail
+          
+          # Create konan directory (Kotlin/Native toolchain location)
+          mkdir -p ~/.konan
+          
+          # Download Kotlin/Native prebuilt with HarmonyOS support
+          # Using KuiklyBase's prebuilt LLVM toolchain for HarmonyOS
+          LLVM_URL="https://github.com/linhandev/KuiklyBase-kotlin/releases/download/llvm-ohos-2/LLVM-19.1.7-ohos-2.tar.gz"
+          
+          echo "Downloading Kotlin Native toolchain..."
+          curl -sSL -o /tmp/llvm-ohos.tar.gz "$LLVM_URL" || echo "WARN: Could not download LLVM"
+          
+          if [ -f /tmp/llvm-ohos.tar.gz ]; then
+            tar -xf /tmp/llvm-ohos.tar.gz -C ~/.konan/
+            echo "LLVM toolchain installed"
+          fi
+          
+          # Download sysroot (HarmonyOS system root)
+          SYSROOT_URL="https://kotlinnativeohos.online/download/sysroot-ohos-aarch64-5.0.11.110.tar.gz"
+          curl -sSL -o /tmp/sysroot.tar.gz "$SYSROOT_URL" || echo "WARN: Could not download sysroot"
+          
+          if [ -f /tmp/sysroot.tar.gz ]; then
+            tar -xf /tmp/sysroot.tar.gz -C ~/.konan/
+            echo "Sysroot installed"
+          fi
+          
+          ls -la ~/.konan/
+
+      # 3. Build libshared.so
+      - name: Build libshared.so
+        run: |
+          ./gradlew :shared:linkHarmonyOSArm64 \
+            --no-daemon \
+            --stacktrace \
+            -PHARMONY_SDK_ROOT=$HARMONY_SDK_ROOT
         env:
           JAVA_HOME: ${{ env.JAVA_HOME }}
+          HARMONY_SDK_ROOT: ${{ env.HARMONY_SDK_ROOT }}
 
-      - name: Upload build artifacts
+      # 4. Verify & upload outputs
+      - name: Verify build outputs
+        run: |
+          echo "=== Build outputs ==="
+          find shared/build/bin -type f \( -name "*.so" -o -name "*.h" -o -name "*.dSYM" \) -exec ls -lh {} \;
+          
+          SO_FILE=$(find shared/build/bin -name "libshared.so" | head -1)
+          if [ -n "$SO_FILE" ]; then
+            echo "✅ libshared.so found: $SO_FILE"
+            file "$SO_FILE"
+          else
+            echo "❌ libshared.so not found"
+            exit 1
+          fi
+
+      - name: Upload libshared.so
         uses: actions/upload-artifact@v5
         with:
-          name: shared-build
-          path: shared/build/
-          retention-days: 7
+          name: libshared-harmonyos
+          path: |
+            shared/build/bin/harmonyOSArm64/*.so
+            shared/build/bin/harmonyOSArm64/*.h
+          retention-days: 30
+          if-no-files-found: error
 
   run-tests:
     runs-on: ubuntu-latest
-
+    needs: build-harmony-so
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v5

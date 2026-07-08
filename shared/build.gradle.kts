@@ -33,23 +33,11 @@ kotlin {
     }
 
     // HarmonyOS target via Kotlin/Native
-    // Uses Kotlin-OHOS harmonyOSArm64 compatibility target
-    // NOTE: .so compilation for HarmonyOS requires macOS ARM64 + KBA toolchain
-    // This target is defined but not built on Windows x86_64
-    // On Windows: use DevEco Studio + devecocli to build the .so
-    // 
-    // KNOI (Kotlin Native Ohos Interaction) approach:
-    // 1. Compile shared module to libshared.so (on macOS ARM64)
-    // 2. Use KNOI KSP plugin to generate ArkTS bindings
-    // 3. Integrate .so into HAP via DevEco Studio
-    //
-    // val harmonyOSArm64 by creating {
-    //     binaries {
-    //         sharedLib {
-    //             baseName = "shared"
-    //         }
-    //     }
-    // }
+    val harmonyOSArm64 by creating {
+        binaries.sharedLib {
+            baseName = "shared"
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -126,13 +114,13 @@ kotlin {
             }
         }
 
-        // val harmonyOSArm64Main by getting {
-        //     dependsOn(commonMain)
-        //     dependencies {
-        //         implementation(libs.sql.delight.native.driver)
-        //         implementation(libs.ktor.client.curl)
-        //     }
-        // }
+        val harmonyOSArm64Main by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(libs.sql.delight.native.driver)
+                implementation(libs.ktor.client.curl)
+            }
+        }
     }
 }
 
