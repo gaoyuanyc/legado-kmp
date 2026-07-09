@@ -56,10 +56,56 @@ data class BookSource(
     val isDisplay: Boolean = true,
     val useWebview: Boolean = true,
     val ruleFindUrl: String? = null,
-    val ruleSearchUrl: String? = null,
     val bookUrlPattern: String? = null,
     val customOrder: Int = 0,
-    val variable: String? = null
+    val variable: String? = null,
+    // ── Book source rule fields (for WebBook engine) ──
+    val ruleSearch: String? = null,          // 搜索列表规则
+    val ruleSearchName: String? = null,      // 书名规则
+    val ruleSearchAuthor: String? = null,    // 作者规则
+    val ruleSearchKind: String? = null,      // 分类规则
+    val ruleSearchIntro: String? = null,     // 简介规则
+    val ruleSearchCoverUrl: String? = null,  // 封面规则
+    val ruleSearchLastChapter: String? = null,// 最后章节规则
+    val ruleSearchUrl: String? = null,       // 书籍URL规则
+    val ruleBookName: String? = null,        // 书籍名规则
+    val ruleBookAuthor: String? = null,      // 作者规则
+    val ruleCoverUrl: String? = null,        // 封面规则
+    val ruleIntro: String? = null,           // 简介规则
+    val ruleKind: String? = null,            // 分类规则
+    val ruleLastChapter: String? = null,     // 最后更新规则
+    val ruleTocUrl: String? = null,          // 目录URL规则
+    val ruleToc: String? = null,             // 目录列表规则
+    val ruleChapterName: String? = null,     // 章节名规则
+    val ruleChapterUrl: String? = null,      // 章节URL规则
+    val ruleContentUrl: String? = null,      // 正文URL规则
+    val ruleContent: String? = null,         // 正文规则
+    val ruleNextTocUrl: String? = null,      // 下一目录URL规则
+    val ruleBookContent: String? = null,      // 正文净化规则
+    val rulePreUpdateJs: String? = null      // 预处理JS
+) {
+    /**
+     * Get the content rule configuration.
+     */
+    fun getContentRule(): ContentRule = ContentRule(
+        content = ruleContent ?: "",
+        sourceRegex = ruleContentUrl,
+        webJs = null
+    )
+
+    /**
+     * Get the book type from source.
+     */
+    fun getBookType(): String = ""
+}
+
+/**
+ * Content rule configuration.
+ */
+data class ContentRule(
+    val content: String? = null,
+    val sourceRegex: String? = null,
+    val webJs: String? = null
 )
 
 /**
