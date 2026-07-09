@@ -43,19 +43,37 @@ object JsonPathReader {
         for (c in path) {
             when {
                 c == '[' && bracketDepth == 0 -> {
-                    if (buffer.isNotEmpty()) { segments.add(buffer.toString().trimStart('$', '.')); buffer.clear() }
+                    if (buffer.isNotEmpty()) {
+                        var seg = buffer.toString().trimStart('$', '.')
+                        if (seg.isNotEmpty()) segments.add(seg)
+                        buffer.clear()
+                    }
                     bracketDepth++
                     buffer.append(c)
                 }
                 c == '[' -> { bracketDepth++; buffer.append(c) }
-                c == ']' -> { bracketDepth--; buffer.append(c); if (bracketDepth == 0) { segments.add(buffer.toString()); buffer.clear() } }
+                c == ']' -> {
+                    bracketDepth--
+                    buffer.append(c)
+                    if (bracketDepth == 0) {
+                        segments.add(buffer.toString())
+                        buffer.clear()
+                    }
+                }
                 c == '.' && bracketDepth == 0 -> {
-                    if (buffer.isNotEmpty()) { segments.add(buffer.toString()); buffer.clear() }
+                    if (buffer.isNotEmpty()) {
+                        var seg = buffer.toString().trimStart('$', '.')
+                        if (seg.isNotEmpty()) segments.add(seg)
+                        buffer.clear()
+                    }
                 }
                 else -> buffer.append(c)
             }
         }
-        if (buffer.isNotEmpty()) segments.add(buffer.toString())
+        if (buffer.isNotEmpty()) {
+            var seg = buffer.toString().trimStart('$', '.')
+            if (seg.isNotEmpty()) segments.add(seg)
+        }
         return segments.filter { it.isNotEmpty() }
     }
 

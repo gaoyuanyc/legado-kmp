@@ -35,7 +35,8 @@ class ReadBookEngine(
     private var cachedPages: List<String> = emptyList()
 
     /** Current page index within chapter */
-    private var currentPageIndex: Int = 0
+    var currentPageIndex: Int = 0
+        private set
 
     /** Total pages in current chapter */
     val totalPagesInChapter: Int get() = cachedPages.size
