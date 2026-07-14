@@ -1,4 +1,4 @@
-﻿name: Build libshared.so (Kotlin-OHOS)
+name: Build libshared.so (Kotlin-OHOS)
 
 on:
   workflow_dispatch:
@@ -89,7 +89,7 @@ jobs:
 
       # 5. Configure Gradle
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
         with:
           gradle-home-cache-cleanup: true
 
