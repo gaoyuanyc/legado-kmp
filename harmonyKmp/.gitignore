@@ -1,0 +1,5 @@
+# Ignore HarmonyOS native build outputs
+harmonyKmp/build/
+harmonyKmp/.gradle/
+harmonyKmp/.kotlin/
+harmonyKmp/out/

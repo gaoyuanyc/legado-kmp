@@ -34,6 +34,7 @@ kotlin {
 
     // HarmonyOS target via Kotlin/Native
     // NOTE: harmonyOSArm64 is NOT a standard Kotlin/Native 2.3.21 target.
+    // Verified 2026-09-19: Kotlin 2.3.21 throws "Unresolved reference: harmonyOSArm64".
     // It requires a custom Kotlin-OHOS fork or KuiklyBase toolchain.
     // Disabled to keep JVM/Android builds working.
     //
