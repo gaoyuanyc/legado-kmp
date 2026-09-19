@@ -1,4 +1,4 @@
-﻿name: Build libshared.so (Kotlin-OHOS)
+name: Build libshared.so (Kotlin-OHOS)
 
 on:
   workflow_dispatch:
@@ -55,7 +55,7 @@ jobs:
           echo "Extracted. Contents:"
           ls ~/ohos-fork-repo
           echo "--- Check for KGP artifact ---"
-          find ~/ohos-fork-repo -maxdepth 3 -iname "*gradle-plugin*" 2>/dev/null | head -5
+          find "$HOME/ohos-fork-repo/repo/org/jetbrains/kotlin" -maxdepth 2 -type d -name "kotlin-gradle-plugin" 2>/dev/null | head -5
 
       # 4. Setup Gradle
       - name: Setup Gradle
@@ -66,13 +66,13 @@ jobs:
       # 5. Build libshared.so (harmonyKmp standalone module)
       - name: Build libshared.so
         env:
-          HARMONY_KOTLIN_REPO: $HOME/ohos-fork-repo
+          HARMONY_KOTLIN_REPO: $HOME/ohos-fork-repo/repo
         run: |
           export JAVA_HOME=${{ steps.jdk17.outputs.path }}
           export KONAN_DATA_DIR=$HOME/.konan
 
           echo "=== Building libshared.so (harmonyKmp) ==="
-          export HARMONY_KOTLIN_REPO=$HOME/ohos-fork-repo
+          export HARMONY_KOTLIN_REPO=$HOME/ohos-fork-repo/repo
           ./gradlew -p harmonyKmp :linkHarmonyOSArm64 \
             --no-daemon \
             --stacktrace
