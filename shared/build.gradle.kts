@@ -101,7 +101,7 @@ kotlin {
                 implementation("org.mozilla:rhino:1.8.1")
                 
                 // OkHttp for HTTP
-                implementation("com.squareup.okhttp3:okhttp:5.3.2")
+                implementation("com.squareup.okhttp3:okhttp:5.4.0")
             }
         }
 
@@ -123,7 +123,7 @@ kotlin {
                 implementation(libs.ktor.client.okhttp)
                 
                 // OkHttp
-                implementation("com.squareup.okhttp3:okhttp:5.3.2")
+                implementation("com.squareup.okhttp3:okhttp:5.4.0")
                 
                 // Rhino (Android JS engine)
                 implementation("org.mozilla:rhino:1.8.1")
