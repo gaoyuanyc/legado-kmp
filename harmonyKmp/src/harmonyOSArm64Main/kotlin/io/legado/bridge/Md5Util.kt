@@ -67,7 +67,7 @@ internal object Md5Util {
                 val temp = d
                 d = c
                 c = b
-                b = b + Integer.rotateLeft(a + f + k[i] + m[g], shift[i])
+                b = b + rotl(a + f + k[i] + m[g], shift[i])
                 a = temp
             }
 
